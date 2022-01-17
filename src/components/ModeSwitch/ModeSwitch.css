@@ -1,0 +1,52 @@
+.switches {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.switch-done {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.switch-done button {
+    border: 0.01rem solid;
+}
+
+.switch-done button:hover {
+    border: 0.2rem solid;
+}
+
+.mode-done:hover {
+    background-color: #00d36a;
+}
+
+.mode-active:hover {
+    background-color: #ffffff;
+}
+
+.switch-important {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.switch-important button {
+    border: 0.01rem solid;
+}
+
+.switch-important button:hover {
+    border: 0.2rem solid;
+}
+
+.mode-important:hover {
+    background-color: #ff671e;
+}
+
+.mode-unimportant:hover {
+    background-color: #ffffff;
+}

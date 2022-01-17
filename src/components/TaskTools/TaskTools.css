@@ -1,0 +1,8 @@
+.task-tools {
+    display: grid;
+    grid-template-columns: 20% 20%;
+}
+
+.task-tools button{
+    margin: 10px;
+}
