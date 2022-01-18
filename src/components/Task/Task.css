@@ -1,0 +1,68 @@
+.important-control {
+    width: 1.5em;
+    height: 1.5em;
+
+    visibility: hidden;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.important-control:before {
+   content: "🔘";
+   visibility: visible;
+}
+
+.important-control:checked:before {
+   content: "🔴";
+}
+
+.done-control {
+    width: 1.5em;
+    height: 1.5em;
+    
+    visibility: hidden;
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+.done-control:before {
+    content: "🔲"; 
+    visibility: visible;
+}
+
+.done-control:checked:before {
+    content: "✅";
+}
+
+.task-text {
+    font-size: 26px;
+}
+
+.date {
+    font-size: 12px;
+
+    grid-column: 3;
+}
+
+.btn {
+    width: 30px;
+    height: 30px;
+
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+    
+    border: 0.01rem solid;
+    background-color: transparent;
+
+    cursor: pointer;
+}
+
+.btn.edit:hover {
+    background-color: grey;
+    
+}
+
+.btn.delete:hover {
+    background-color: crimson;
+}

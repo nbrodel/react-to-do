@@ -1,0 +1,30 @@
+.task-form {
+    display: grid;
+    grid-template-columns: 85% 5% 10%;
+}
+
+.task-input {
+    padding: 0.2em;
+
+    font-size: 20px;
+}
+
+.btn-add {
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+.important-control {
+    visibility: hidden;
+    font-size: 20px;
+    cursor:pointer;
+}
+
+.important-control:before {
+   content: "🔘";
+   visibility: visible;
+}
+.important-control:checked:before {
+   content: "🔴";
+}

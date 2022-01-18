@@ -1,0 +1,16 @@
+.task-tools {
+    display: grid;
+    grid-template-columns: 20% 20%;
+}
+
+.task-tools button{
+    margin: 10px;
+    height: 26px;
+
+    border: 0.01rem solid;
+}
+
+.task-tools button:hover {
+    border: 0.2rem solid;
+    background-color: crimson;
+}

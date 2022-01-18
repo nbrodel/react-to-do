@@ -1,0 +1,28 @@
+.task {
+    height: 60px;
+
+    display: grid;
+    grid-template-columns: 5.5% 4.5% 80% 5% 5%;
+    align-items: center;
+    
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    border-radius: 20px;
+    border: 0.3rem solid;
+}
+
+.task.important {
+    background-color: #ffd5d5;
+}
+
+.task.important .task-text{
+    font-size: 27px;
+}
+
+.task.done .task-text{
+    text-decoration: line-through;
+    text-decoration-color: green;
+    color: green;
+}
