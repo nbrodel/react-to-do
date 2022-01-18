@@ -5,7 +5,8 @@ import "./TaskList.css"
 
 class TaskList extends Component {
     render() {
-        const { tasks, onToggleDone, onDeleteTask, onToggleImportant } = this.props;
+        const {tasks, onToggleDone, onDeleteTask, onToggleImportant} = this.props;
+
         const todos = tasks.map((task) => { 
             const {id, isDone, isImportant, ...itemProps} = task;
 
@@ -32,6 +33,7 @@ class TaskList extends Component {
                 </div>
             )
         });
+        
         return (
             <div className='task-list'>
                 {todos}

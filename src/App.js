@@ -5,19 +5,30 @@ import TaskInput from './components/TaskInput/TaskInput';
 import ModeSwitch from './components/ModeSwitch/ModeSwitch';
 import TaskList from './components/TaskList/TaskList';
 import TaskTools from './components/TaskTools/TaskTools';
+import SwitchTheme from './components/SwitchTheme/SwitchTheme'
 
 import {isSameText} from '../src/functions/functions'
 
-import {doneModes} from './consts/switches';
+import {FILTERS} from './consts/switches';
+import {themes, ThemeContext} from "../src/consts/themes.js"
 
 class App extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       tasks: [],
-      mode: doneModes.ALL
+      mode: FILTERS.ALL,
+      theme: themes.LIGHT
     }
+  }
+
+  
+
+  handleToggleTheme = (e) => {
+    this.setState({
+      theme: e.target.checked ? themes.DARK : themes.LIGHT
+    })
   }
 
   handleAddTask = (textTask, isImportant) => {
@@ -29,7 +40,7 @@ class App extends Component {
         id: Math.random(),
         text: textTask,
         isDone: false,
-        isImportant: isImportant ? true : false,
+        isImportant: isImportant && false,
         date: new Date().toLocaleString()
       };
       
@@ -61,10 +72,8 @@ class App extends Component {
 
   filterTasks = (tasks, selectedMode) => {
     switch(selectedMode) {
-      default:
-        return tasks;
-      case 'All':
-        return tasks;
+      default: return tasks;
+      case 'All': return tasks;
       case 'Active':
         return tasks.filter(task => !task.isDone);
       case 'Done':
@@ -76,7 +85,7 @@ class App extends Component {
     }
   }
 
-  handleToogleDone = (id) => {
+  handleToggleDone = (id) => {
     this.setState({
       tasks: this.state.tasks.map(task => 
         task.id === id ? { ...task, isDone: !task.isDone } : task)
@@ -97,9 +106,11 @@ class App extends Component {
   }
 
   render () {
-    const { state, filterTasks, handleAddTask, handleDeleteAllTasks, handleDeleteAllDoneTasks, handleChangeMode, handleToogleDone, handleDeleteTask, handleToggleImportant } = this;
+    const { state, filterTasks, 
+      handleToggleTheme, handleAddTask, handleDeleteAllTasks, handleDeleteAllDoneTasks, 
+      handleChangeMode, handleToggleDone, handleDeleteTask, handleToggleImportant } = this;
 
-    const { tasks, mode } = state;
+    const { tasks, mode, theme } = state;
 
     const activeTaskCount = tasks.filter(task => !task.isDone).length;
     const activeImportantTaskCount = tasks.filter(task => task.isImportant).length;
@@ -107,27 +118,35 @@ class App extends Component {
     const currentTasks = filterTasks(tasks, mode);    
 
     return (
-      <div className="App">
-        <Heading
-          activeTaskCount={activeTaskCount}
-          activeImportantTaskCount={activeImportantTaskCount}
-          />
+      <ThemeContext.Provider value={theme}>
+        <div className="App">
+            <Heading
+              activeTaskCount={activeTaskCount}
+              activeImportantTaskCount={activeImportantTaskCount}
+            />
 
-        <TaskInput onItemAdded={handleAddTask} />
+            <SwitchTheme
+              onToggleTheme={handleToggleTheme}
+              theme={theme}
+            />
 
-        <TaskTools
-          onDeleteAllTasks = {handleDeleteAllTasks}
-          onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}/>
+            <TaskInput onItemAdded={handleAddTask} />
 
-        <ModeSwitch onChangeMode={handleChangeMode} />
+            <TaskTools
+              onDeleteAllTasks = {handleDeleteAllTasks}
+              onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}
+            />
 
-        <TaskList
-          tasks={currentTasks}
-          onToggleDone={handleToogleDone} 
-          onDeleteTask={handleDeleteTask} 
-          onToggleImportant = {handleToggleImportant}
-          />
-      </div>
+            <ModeSwitch onChangeMode={handleChangeMode} />
+
+            <TaskList
+              tasks={currentTasks}
+              onToggleDone={handleToggleDone} 
+              onDeleteTask={handleDeleteTask} 
+              onToggleImportant = {handleToggleImportant}
+            />
+        </div>
+      </ThemeContext.Provider>
     );
   }
 }

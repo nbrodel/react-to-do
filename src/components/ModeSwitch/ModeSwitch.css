@@ -1,6 +1,12 @@
+:root {
+    --white: #ffffff;
+    --green: #00d36a;
+    --red: #f82d2b;
+}
+
 .switches {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 20% 20% 20% 20% 20%;
 }
 
 .switch-done {
@@ -11,42 +17,35 @@
     margin-right: 10px;
 }
 
-.switch-done button {
+.switches button {
     border: 0.01rem solid;
+    height: 26px;
 }
 
-.switch-done button:hover {
+.switches button:hover {
     border: 0.2rem solid;
 }
 
 .mode-done:hover {
-    background-color: #00d36a;
+    background-color: var(--green);
 }
 
 .mode-active:hover {
-    background-color: #ffffff;
+    background-color: var(--white);
 }
 
 .switch-important {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.switch-important button {
-    border: 0.01rem solid;
-}
-
-.switch-important button:hover {
-    border: 0.2rem solid;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .mode-important:hover {
-    background-color: #ff671e;
+    background-color: var(--red);
 }
 
 .mode-unimportant:hover {
-    background-color: #ffffff;
+    background-color: var(--white);
 }

@@ -4,7 +4,8 @@ import "./Task.css"
 
 class Task extends Component {
     render() {
-        const { text, date, isDone, isImportant, handleToogleDone, handleDeleteTask, handleToggleImportant } = this.props;
+        const {text, date, isDone, isImportant,
+               handleToogleDone, handleDeleteTask, handleToggleImportant} = this.props;
 
         return (
             <Fragment>

@@ -1,10 +1,7 @@
-export const doneModes = {
+export const FILTERS = {
     ALL: 'All',
     ACTIVE: 'Active',
-    DONE: 'Done'
-}
-
-export const importantModes = {
+    DONE: 'Done',
     IMPORTANT: 'Important',
     UNIMPORTANT: 'Unimportant'
 }

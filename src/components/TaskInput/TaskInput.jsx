@@ -33,9 +33,9 @@ class TaskInput extends Component {
     }
 
     render() {
-        const { state, handleToggleImportant, handleChangeInput, handleSubmitTask } = this;
+        const {state, handleToggleImportant, handleChangeInput, handleSubmitTask} = this;
 
-        const { textInput, isImportant } = state;
+        const {textInput, isImportant} = state;
 
         return (
             <form className='task-form' onSubmit={handleSubmitTask}>
@@ -46,7 +46,12 @@ class TaskInput extends Component {
                     value={textInput}
                 />
                 
-                <input className='important-control' type="checkbox" checked={isImportant} onChange={handleToggleImportant}/>
+                <input 
+                    className='important-control' 
+                    type="checkbox" 
+                    checked={isImportant} 
+                    onChange={handleToggleImportant}
+                />
 
                 <button className='btn-add'>Add</button>
             </form>

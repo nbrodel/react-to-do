@@ -22,9 +22,9 @@
 }
 
 .important-control:before {
-   content: "🟤";
+   content: "🔘";
    visibility: visible;
 }
 .important-control:checked:before {
-   content: "🟠";
+   content: "🔴";
 }

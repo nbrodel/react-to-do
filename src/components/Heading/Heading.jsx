@@ -7,7 +7,7 @@ class Heading extends Component {
         super(props);
 
         this.state = {
-            date: new Date
+            date: new Date()
         }
     }
 
