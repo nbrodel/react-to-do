@@ -7,6 +7,8 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import { Loader } from '../../Loader';
 
+import PropTypes from 'prop-types';
+
 const TaskLoader = Loader(Task);
 
 class TaskList extends Component {
@@ -32,7 +34,6 @@ class TaskList extends Component {
                         isDone={isDone}
                         isImportant={isImportant}
                         
-                        
                         handleToogleDone = {() => onToggleDone(id)}
                         handleDeleteTask = {() => onDeleteTask(id)}
                         handleToggleImportant = {() => onToggleImportant(id)}
@@ -48,6 +49,12 @@ class TaskList extends Component {
             </div>
         )
     }
+}
+
+TaskList.propTypes = {
+    id: PropTypes.number,
+    isDone: PropTypes.bool,
+    isImportant: PropTypes.bool
 }
 
 export default TaskList

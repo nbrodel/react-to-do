@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import "./Heading.css"
 
+import PropTypes from 'prop-types';
+
 class Heading extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +26,10 @@ class Heading extends Component {
             </header>
         )
     }
+}
+
+Heading.propTypes = {
+    date: PropTypes.instanceOf(Date)
 }
 
 export default Heading

@@ -4,6 +4,8 @@ import "./Task.css"
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
+import PropTypes from 'prop-types';
+
 class Task extends Component {
     render() {
         const {text, date, isDone, isImportant,
@@ -24,6 +26,13 @@ class Task extends Component {
         }
         </ThemeContext.Consumer>
     }
+}
+
+Task.propTypes = {
+    text: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
+    isDone: PropTypes.bool,
+    isImportant: PropTypes.bool
 }
 
 export default Task
