@@ -11,7 +11,7 @@ class ModeSwitch extends Component {
         const filters = Object.values(FILTERS).map((filter) => {
             const value = filter.toLowerCase();
             
-            return <button className={`mode-${value}`} onClick={() => onChangeMode(filter)}>{filter}</button>
+            return <button className={`mode-${value}`} key={Math.random()} onClick={() => onChangeMode(filter)}>{filter}</button>
           })
 
         return (

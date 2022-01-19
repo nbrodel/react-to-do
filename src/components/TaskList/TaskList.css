@@ -1,3 +1,13 @@
+:root {
+    --light-task: #387a57;
+    --light-task-important: #ffd5d5;
+
+    --moon-task: #fcd63d;
+    --moon-task-important: rebeccapurple;
+
+    --task-done: green;
+}
+
 .task {
     height: 60px;
 
@@ -11,10 +21,20 @@
 
     border-radius: 20px;
     border: 0.3rem solid;
+
+    background-color: var(--light-task);
 }
 
 .task.important {
-    background-color: #ffd5d5;
+    background-color: var(--light-task-important);
+}
+
+.moon.task {
+    background-color: var(--moon-task);
+}
+
+.moon.task.important {
+    background-color: var(--moon-task-important);
 }
 
 .task.important .task-text{
@@ -23,6 +43,6 @@
 
 .task.done .task-text{
     text-decoration: line-through;
-    text-decoration-color: green;
-    color: green;
+    text-decoration-color: var(--task-done);
+    color: var(--task-done);
 }

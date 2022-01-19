@@ -1,5 +1,7 @@
 import { Component } from 'react/cjs/react.production.min';
 
+/* import './App.css' */
+
 import Heading from './components/Heading/Heading';
 import TaskInput from './components/TaskInput/TaskInput';
 import ModeSwitch from './components/ModeSwitch/ModeSwitch';
@@ -9,8 +11,10 @@ import SwitchTheme from './components/SwitchTheme/SwitchTheme'
 
 import {isSameText} from '../src/functions/functions'
 
+import { ThemeContext } from './contexts/ThemeContext';
+
 import {FILTERS} from './consts/switches';
-import {themes, ThemeContext} from "../src/consts/themes.js"
+import {themes} from "../src/consts/themes.js"
 
 class App extends Component {
   constructor(props) {
@@ -21,13 +25,11 @@ class App extends Component {
       mode: FILTERS.ALL,
       theme: themes.LIGHT
     }
-  }
-
-  
+  } 
 
   handleToggleTheme = (e) => {
     this.setState({
-      theme: e.target.checked ? themes.DARK : themes.LIGHT
+      theme: e.target.checked ? themes.MOON : themes.LIGHT
     })
   }
 
@@ -118,35 +120,35 @@ class App extends Component {
     const currentTasks = filterTasks(tasks, mode);    
 
     return (
-      <ThemeContext.Provider value={theme}>
-        <div className="App">
-            <Heading
-              activeTaskCount={activeTaskCount}
-              activeImportantTaskCount={activeImportantTaskCount}
-            />
+      <div className="app">
+        <ThemeContext.Provider value={theme}>
+          <Heading
+            activeTaskCount={activeTaskCount}
+            activeImportantTaskCount={activeImportantTaskCount}
+          />
 
-            <SwitchTheme
-              onToggleTheme={handleToggleTheme}
-              theme={theme}
-            />
+          <SwitchTheme
+            onToggleTheme={handleToggleTheme}
+            theme={theme}
+          />
 
-            <TaskInput onItemAdded={handleAddTask} />
+          <TaskInput onItemAdded={handleAddTask} />
 
-            <TaskTools
-              onDeleteAllTasks = {handleDeleteAllTasks}
-              onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}
-            />
+          <TaskTools
+            onDeleteAllTasks = {handleDeleteAllTasks}
+            onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}
+          />
 
-            <ModeSwitch onChangeMode={handleChangeMode} />
+          <ModeSwitch onChangeMode={handleChangeMode} />
 
-            <TaskList
-              tasks={currentTasks}
-              onToggleDone={handleToggleDone} 
-              onDeleteTask={handleDeleteTask} 
-              onToggleImportant = {handleToggleImportant}
-            />
-        </div>
-      </ThemeContext.Provider>
+          <TaskList
+            tasks={currentTasks}
+            onToggleDone={handleToggleDone} 
+            onDeleteTask={handleDeleteTask} 
+            onToggleImportant = {handleToggleImportant}
+          />
+        </ThemeContext.Provider>
+      </div>
     );
   }
 }

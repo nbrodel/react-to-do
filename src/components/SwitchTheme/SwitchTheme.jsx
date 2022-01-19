@@ -11,7 +11,7 @@ class SwitchTheme extends Component {
                 <input 
                     type="checkbox"
                     onChange={onToggleTheme}
-                    checked={theme === themes.DARK}
+                    checked={theme === themes.MOON}
                 />
                 <span>{theme} mode</span>
             </div>
