@@ -1,8 +1,4 @@
-import React from "react";
-
 export const themes = {
-    LIGHT: 'Light',
-    DARK: 'Dark'
+    LIGHT: 'light',
+    MOON: 'moon'
 }
-
-export const ThemeContext = React.createContext(themes.DARK);

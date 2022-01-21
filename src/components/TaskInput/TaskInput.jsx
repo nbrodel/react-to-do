@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import "./TaskInput.css"
 
+import { ThemeContext } from '../../contexts/ThemeContext';
+
 class TaskInput extends Component {
     constructor(props) {
         super(props);
@@ -37,7 +39,7 @@ class TaskInput extends Component {
 
         const {textInput, isImportant} = state;
 
-        return (
+        return <ThemeContext.Consumer>{ value =>
             <form className='task-form' onSubmit={handleSubmitTask}>
                 <input
                     className='task-input'
@@ -47,7 +49,7 @@ class TaskInput extends Component {
                 />
                 
                 <input 
-                    className='important-control' 
+                    className={value + ' important-control' }
                     type="checkbox" 
                     checked={isImportant} 
                     onChange={handleToggleImportant}
@@ -55,7 +57,8 @@ class TaskInput extends Component {
 
                 <button className='btn-add'>Add</button>
             </form>
-        )
+        }
+        </ThemeContext.Consumer>
     }
 }
 

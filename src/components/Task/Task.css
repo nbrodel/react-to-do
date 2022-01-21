@@ -1,3 +1,8 @@
+:root {
+    --white: #ffffff;
+    --dark: #1a1b1f;
+}
+
 .important-control {
     width: 1.5em;
     height: 1.5em;
@@ -7,12 +12,19 @@
     cursor: pointer;
 }
 
-.important-control:before {
-   content: "🔘";
-   visibility: visible;
+.moon.important-control:before {
+    content: "🌑";
 }
 
-.important-control:checked:before {
+.moon.important-control:checked:before {
+    content: "🌕";
+}
+
+.light.important-control:before {
+   content: "🔘";
+}
+
+.light.important-control:checked:before {
    content: "🔴";
 }
 

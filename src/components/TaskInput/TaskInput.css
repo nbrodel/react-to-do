@@ -3,6 +3,10 @@
     grid-template-columns: 85% 5% 10%;
 }
 
+.dark.task-form {
+    background-color: var(--yellow);
+}
+
 .task-input {
     padding: 0.2em;
 
@@ -25,6 +29,15 @@
    content: "🔘";
    visibility: visible;
 }
+
 .important-control:checked:before {
    content: "🔴";
+}
+
+.moon.important-control:before {
+    content: "🌑";
+}
+
+.moon.important-control:checked:before {
+    content: "🌕";
 }

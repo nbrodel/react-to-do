@@ -2,15 +2,17 @@ import React, { Component, Fragment } from 'react'
 
 import "./Task.css"
 
+import { ThemeContext } from '../../contexts/ThemeContext';
+
 class Task extends Component {
     render() {
         const {text, date, isDone, isImportant,
                handleToogleDone, handleDeleteTask, handleToggleImportant} = this.props;
 
-        return (
+        return <ThemeContext.Consumer>{ value =>
             <Fragment>
-                <input className='important-control' type="checkbox" checked={isImportant} onChange={handleToggleImportant} />
-                <input className='done-control' type="checkbox" checked={isDone} onChange={handleToogleDone} />
+                <input className={value + ' important-control'} type="checkbox" checked={isImportant} onChange={handleToggleImportant} />
+                <input className={value + ' done-control'} type="checkbox" checked={isDone} onChange={handleToogleDone} />
 
                 <span className='task-text'>{text}</span>
 
@@ -19,7 +21,8 @@ class Task extends Component {
 
                 <span className='date'>Created: {date}</span>
             </Fragment>
-        )
+        }
+        </ThemeContext.Consumer>
     }
 }
 
