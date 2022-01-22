@@ -1,6 +1,4 @@
-import { Component } from 'react/cjs/react.production.min';
-
-/* import './App.css' */
+import React, {useState} from 'react';
 
 import Heading from './components/Heading/Heading';
 import TaskInput from './components/TaskInput/TaskInput';
@@ -11,30 +9,22 @@ import SwitchTheme from './components/SwitchTheme/SwitchTheme'
 
 import {isSameText} from '../src/functions/functions'
 
-import { ThemeContext } from './contexts/ThemeContext';
+import {ThemeContext} from './contexts/ThemeContext';
 
 import {FILTERS} from './consts/switches';
-import {themes} from "../src/consts/themes.js"
+import {THEME} from "../src/consts/themes.js"
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      tasks: [],
-      mode: FILTERS.ALL,
-      theme: themes.LIGHT
-    }
-  } 
+function App () {
+  const [tasks, setTasks] = useState([]);
+  const [mode, setMode] = useState(FILTERS.ALL);
+  const [theme, setTheme] = useState(THEME.MOON);
 
-  handleToggleTheme = (e) => {
-    this.setState({
-      theme: e.target.checked ? themes.MOON : themes.LIGHT
-    })
+  function handleToggleTheme(e) {
+    setTheme(e.target.checked ? THEME.MOON : THEME.LIGHT)
   }
 
-  handleAddTask = (textTask, isImportant) => {
-    const isUnique = this.state.tasks.every(task => isSameText(task.text, textTask))
+  function handleAddTask(textTask, isImportant) {
+    const isUnique = tasks.every(task => isSameText(task.text, textTask))
 
     if(isUnique)
     {
@@ -42,37 +32,27 @@ class App extends Component {
         id: Math.random(),
         text: textTask,
         isDone: false,
-        isImportant: isImportant && false,
+        isImportant: isImportant && true,
         date: new Date().toLocaleString()
       };
       
-      this.setState(({ tasks }) => {
-        const newTasks = [ ...tasks, newTask ];
-  
-        return {
-          tasks: newTasks
-        };
-      });
+      const newTasks = [ ...tasks, newTask];
+
+      setTasks(newTasks)
     }
     else
       alert("this task already exists");
   };
 
-  handleDeleteAllTasks = () => {
-    this.setState({ tasks: [] })
+  function handleDeleteAllTasks() { setTasks([]) }
+
+  function handleDeleteAllDoneTasks() {
+    setTasks(tasks.filter(task => !task.isDone))
   }
 
-  handleDeleteAllDoneTasks = () => {
-    this.setState({
-      tasks: this.state.tasks.filter(task => !task.isDone)
-    })
-  }
+  function handleChangeMode(selectedMode) { setMode(selectedMode) }
 
-  handleChangeMode = (selectedMode) => {
-    this.setState({ mode: selectedMode })
-  }
-
-  filterTasks = (tasks, selectedMode) => {
+  function filterTasks(tasks, selectedMode) {
     switch(selectedMode) {
       default: return tasks;
       case 'All': return tasks;
@@ -87,70 +67,59 @@ class App extends Component {
     }
   }
 
-  handleToggleDone = (id) => {
-    this.setState({
-      tasks: this.state.tasks.map(task => 
+  function handleToggleDone(id) {
+    setTasks(tasks.map(task => 
         task.id === id ? { ...task, isDone: !task.isDone } : task)
-    });
-  }
-
-  handleDeleteTask = (id) => {
-    this.setState ({
-      tasks: this.state.tasks.filter(task => task.id !== id)
-    });
-  }
-
-  handleToggleImportant = (id) => {
-    this.setState({
-      tasks: this.state.tasks.map(task => 
-        task.id === id ? { ...task, isImportant: !task.isImportant } : task)
-    });
-  }
-
-  render () {
-    const { state, filterTasks, 
-      handleToggleTheme, handleAddTask, handleDeleteAllTasks, handleDeleteAllDoneTasks, 
-      handleChangeMode, handleToggleDone, handleDeleteTask, handleToggleImportant } = this;
-
-    const { tasks, mode, theme } = state;
-
-    const activeTaskCount = tasks.filter(task => !task.isDone).length;
-    const activeImportantTaskCount = tasks.filter(task => task.isImportant).length;
-
-    const currentTasks = filterTasks(tasks, mode);    
-
-    return (
-      <div className="app">
-        <ThemeContext.Provider value={theme}>
-          <Heading
-            activeTaskCount={activeTaskCount}
-            activeImportantTaskCount={activeImportantTaskCount}
-          />
-
-          <SwitchTheme
-            onToggleTheme={handleToggleTheme}
-            theme={theme}
-          />
-
-          <TaskInput onItemAdded={handleAddTask} />
-
-          <TaskTools
-            onDeleteAllTasks = {handleDeleteAllTasks}
-            onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}
-          />
-
-          <ModeSwitch onChangeMode={handleChangeMode} />
-
-          <TaskList
-            tasks={currentTasks}
-            onToggleDone={handleToggleDone} 
-            onDeleteTask={handleDeleteTask} 
-            onToggleImportant = {handleToggleImportant}
-          />
-        </ThemeContext.Provider>
-      </div>
     );
   }
+
+  function handleDeleteTask (id) {
+    setTasks (tasks.filter(task => task.id !== id));
+  }
+
+  function handleToggleImportant(id) {
+    setTasks(tasks.map(task => 
+        task.id === id ? { ...task, isImportant: !task.isImportant } : task)
+    );
+  }
+
+  const activeTaskCount = tasks.filter(task => !task.isDone).length;
+  const activeImportantTaskCount = tasks.filter(task => task.isImportant).length;
+
+  const currentTasks = filterTasks(tasks, mode);
+
+  return (
+    <ThemeContext.Provider value={theme}>
+      <div className="app">
+      
+        <Heading
+          activeTaskCount={activeTaskCount}
+          activeImportantTaskCount={activeImportantTaskCount}
+        />
+
+        <SwitchTheme
+          onToggleTheme={handleToggleTheme}
+          theme={theme}
+        />
+
+        <TaskInput onItemAdded={handleAddTask} />
+
+        <TaskTools
+          onDeleteAllTasks = {handleDeleteAllTasks}
+          onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}
+        />
+
+        <ModeSwitch onChangeMode={handleChangeMode} />
+
+        <TaskList
+          tasks={currentTasks}
+          onToggleDone={handleToggleDone} 
+          onDeleteTask={handleDeleteTask} 
+          onToggleImportant = {handleToggleImportant}
+        />
+      </div>
+    </ThemeContext.Provider>
+  );
 }
 
 export default App;

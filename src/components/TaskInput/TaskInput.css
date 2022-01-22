@@ -3,13 +3,8 @@
     grid-template-columns: 85% 5% 10%;
 }
 
-.dark.task-form {
-    background-color: var(--yellow);
-}
-
 .task-input {
     padding: 0.2em;
-
     font-size: 20px;
 }
 

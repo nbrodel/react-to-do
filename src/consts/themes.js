@@ -1,4 +1,4 @@
-export const themes = {
+export const THEME = {
     LIGHT: 'light',
     MOON: 'moon'
 }

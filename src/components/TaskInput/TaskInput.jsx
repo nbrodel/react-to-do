@@ -1,65 +1,57 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 import "./TaskInput.css"
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-class TaskInput extends Component {
-    constructor(props) {
-        super(props);
+function TaskInput (props) {
+    const [textInput, setInput] = useState('');
+    const [isImportant, setImportant] = useState(false);
 
-        this.state = {
-            textInput: '',
-            isImportant: false
-        };        
-    };
+    const {onItemAdded} = props;
 
-    handleSubmitTask = (e) => {
+    function handleSubmitTask(e) {
         e.preventDefault();
-
-        const { textInput, isImportant} = this.state;
-        this.props.onItemAdded(textInput, isImportant);
-
-        this.setState({
-            textInput: '',
-            isImportant: false
-        });
+        
+        onItemAdded(textInput, isImportant);
+        
+        setInput('');
+        setImportant(false);
     };
 
-    handleChangeInput = (e) => {
-        this.setState({ textInput: e.target.value });
+    function handleChangeInput(e) {
+        setInput(e.target.value)
+        
     };
 
-    handleToggleImportant = (e) => {
-        this.setState({ isImportant: e.target.checked})
+    function handleToggleImportant(e) {
+        setImportant(e.target.checked)
     }
 
-    render() {
-        const {state, handleToggleImportant, handleChangeInput, handleSubmitTask} = this;
-
-        const {textInput, isImportant} = state;
-
-        return <ThemeContext.Consumer>{ value =>
-            <form className='task-form' onSubmit={handleSubmitTask}>
-                <input
-                    className='task-input'
-                    placeholder='input text...'
-                    onChange={handleChangeInput}
-                    value={textInput}
-                />
-                
-                <input 
-                    className={value + ' important-control' }
-                    type="checkbox" 
-                    checked={isImportant} 
-                    onChange={handleToggleImportant}
-                />
-
-                <button className='btn-add'>Add</button>
-            </form>
-        }
-        </ThemeContext.Consumer>
+    function handleToggleImportant(e){
+        setImportant(e.target.checked)
     }
+
+    return <ThemeContext.Consumer>{ value =>
+        <form className='task-form' onSubmit={handleSubmitTask}>
+            <input
+                className='task-input'
+                placeholder='input text...'
+                onChange={handleChangeInput}
+                value={textInput}
+            />
+            
+            <input 
+                className={`${value} important-control`}
+                type="checkbox" 
+                onChange={handleToggleImportant}
+                checked={isImportant}
+            />
+
+            <button className='btn-add'>Add</button>
+        </form>
+    }
+    </ThemeContext.Consumer>
 }
 
 export default TaskInput

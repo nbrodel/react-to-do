@@ -1,7 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 
 import Task from '../Task/Task'
 import "./TaskList.css"
+
+import cn from 'classnames';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
@@ -11,50 +13,40 @@ import PropTypes from 'prop-types';
 
 const TaskLoader = Loader(Task);
 
-class TaskList extends Component {
-    render() {
-        const {tasks, onToggleDone, onDeleteTask, onToggleImportant} = this.props;
+function TaskList (props) {
+    const {tasks, onToggleDone, onDeleteTask, onToggleImportant} = props;
 
-        const todos = tasks.map((task) => { 
-            const {id, isDone, isImportant, ...itemProps} = task;
+    const todos = tasks.map((task) => { 
+        const {id, isDone, isImportant, ...itemProps} = task;
 
-            let classList = 'task';
+        return <ThemeContext.Consumer>{ value =>
+            <div key={id} className={`${value} ${cn('task', {'important': isImportant}, {'done': isDone})}`}>
+                <TaskLoader
+                    {...itemProps}
 
-            if (isImportant)
-                classList += ' important'
-            
-            if(isDone)
-                classList += ' done'
-
-            return <ThemeContext.Consumer>{ value =>
-                <div key={id} className={value + ' ' + classList}>
-                    <TaskLoader
-                        {...itemProps}
-
-                        isDone={isDone}
-                        isImportant={isImportant}
-                        
-                        handleToogleDone = {() => onToggleDone(id)}
-                        handleDeleteTask = {() => onDeleteTask(id)}
-                        handleToggleImportant = {() => onToggleImportant(id)}
-                    />
-                </div>
-                }
-            </ThemeContext.Consumer>  
-        });
-        
-        return (
-            <div className='task-list'>
-                {todos}
+                    isDone={isDone}
+                    isImportant={isImportant}
+                    
+                    handleToogleDone = {() => onToggleDone(id)}
+                    handleDeleteTask = {() => onDeleteTask(id)}
+                    handleToggleImportant = {() => onToggleImportant(id)}
+                />
             </div>
-        )
-    }
+            }
+        </ThemeContext.Consumer>  
+    });
+    
+    return (
+        <div className='task-list'>
+            {todos}
+        </div>
+    )
 }
 
 TaskList.propTypes = {
-    id: PropTypes.number,
-    isDone: PropTypes.bool,
-    isImportant: PropTypes.bool
+    id: PropTypes.number.isRequired,
+    isDone: PropTypes.bool.isRequired,
+    isImportant: PropTypes.bool.isRequired
 }
 
 export default TaskList
