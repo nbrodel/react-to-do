@@ -23,7 +23,7 @@ function TaskList (props) {
             <div key={id} className={`${value} ${cn('task', {'important': isImportant}, {'done': isDone})}`}>
                 <TaskLoader
                     {...itemProps}
-
+                     
                     isDone={isDone}
                     isImportant={isImportant}
                     

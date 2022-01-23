@@ -2,7 +2,7 @@ import React from 'react'
 
 import "./ModeSwitch.css"
 
-import {FILTERS} from '../../consts/switches'
+import {FILTERS} from '../../consts/filters'
 
 function ModeSwitch (props) {
     const {onChangeMode} = props;
