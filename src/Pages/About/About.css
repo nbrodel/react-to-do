@@ -1,0 +1,14 @@
+img {
+    width: 120px;
+    height: 160px;
+    border-radius: 0%;
+}
+
+.contact {
+    background-color: bisque;
+    padding: 10px;
+}
+
+a {
+    margin: 10px;
+}

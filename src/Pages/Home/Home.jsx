@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 
-import Description from '../Description/Description'
-import SwitchTheme from '../SwitchTheme/SwitchTheme'
-import TaskInput from '../TaskInput/TaskInput'
-import TaskTools from '../TaskTools/TaskTools'
-import ModeSwitch from '../ModeSwitch/ModeSwitch'
-import TaskList from '../TaskList/TaskList'
-import Header from '../Header/Header'
+import Description from '../../components/Description/Description'
+import SwitchTheme from '../../components/SwitchTheme/SwitchTheme'
+import TaskInput from '../../components/TaskInput/TaskInput'
+import TaskTools from '../../components/TaskTools/TaskTools'
+import ModeSwitch from '../../components/ModeSwitch/ModeSwitch'
+import TaskList from '../../components/TaskList/TaskList'
+import Header from '../../components/Header/Header'
 
 import {hasSameText} from '../../functions/functions'
 

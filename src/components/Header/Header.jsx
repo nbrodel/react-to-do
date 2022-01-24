@@ -5,10 +5,10 @@ import './Header.css'
 export default function Header() {
   return (
     <>
-        <nav>
-            <Link className='link' to='/'>Home</Link>
-            <Link className='link' to='/about'>About</Link>
-        </nav>
+      <nav>
+          <Link className='link' to='/'>Home</Link>
+          <Link className='link' to='/about'>About</Link>
+      </nav>
     </>
   );
 }
