@@ -8,16 +8,16 @@ import ModeSwitch from '../ModeSwitch/ModeSwitch'
 import TaskList from '../TaskList/TaskList'
 import Header from '../Header/Header'
 
-import {isSameText} from '../../functions/functions'
+import {hasSameText} from '../../functions/functions'
 
 import {ThemeContext} from '../../contexts/ThemeContext'
 
-import {FILTERS} from '../../consts/filters';
+import {FILTER} from '../../consts/filter';
 import {THEME} from "../../consts/themes"
 
 function Home () {
   const [tasks, setTasks] = useState([]);
-  const [mode, setMode] = useState(FILTERS.ALL);
+  const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
 
   function handleToggleTheme(e) {
@@ -25,7 +25,13 @@ function Home () {
   }
 
   function handleAddTask(textTask, isImportant) {
-    const isUnique = tasks.every(task => isSameText(task.text, textTask))
+    let isUnique = true;
+    for(let task of tasks)
+    {
+      isUnique = hasSameText(task.text, textTask);
+      if(!isUnique)
+        break;
+    }
 
     if(isUnique)
     {
