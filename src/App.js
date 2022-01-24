@@ -7,16 +7,16 @@ import TaskList from './components/TaskList/TaskList';
 import TaskTools from './components/TaskTools/TaskTools';
 import SwitchTheme from './components/SwitchTheme/SwitchTheme'
 
-import {isSameText} from '../src/functions/functions'
+import {hasSameText} from '../src/functions/functions'
 
 import {ThemeContext} from './contexts/ThemeContext';
 
-import {FILTERS} from './consts/switches';
+import {FILTER} from './consts/switches';
 import {THEME} from "../src/consts/themes.js"
 
 function App () {
   const [tasks, setTasks] = useState([]);
-  const [mode, setMode] = useState(FILTERS.ALL);
+  const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
 
   function handleToggleTheme(e) {
@@ -24,7 +24,15 @@ function App () {
   }
 
   function handleAddTask(textTask, isImportant) {
-    const isUnique = tasks.every(task => isSameText(task.text, textTask))
+    let isUnique = true;
+    for(let i = 0; i > tasks.length; i++)
+    {
+      if(hasSameText(tasks[i].text, textTask))
+      {
+        isUnique = false;
+        break;
+      }
+    }
 
     if(isUnique)
     {

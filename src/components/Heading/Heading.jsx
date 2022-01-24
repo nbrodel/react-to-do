@@ -13,7 +13,8 @@ function Heading (props) {
         <header>
             <h1 className='heading'>To-do app</h1>
 
-            <p className='description'>Today is {date.toLocaleDateString()}.
+            <p className='description'>
+                Today is {date.toLocaleDateString()}.
                 You have {activeTaskCount} active task and {activeImportantTaskCount} important tasks.</p>
         </header>
     )

@@ -5,7 +5,7 @@ import "./TaskInput.css"
 import { ThemeContext } from '../../contexts/ThemeContext';
 
 function TaskInput (props) {
-    const [textInput, setInput] = useState('');
+    const [textInput, setTextInput] = useState('');
     const [isImportant, setImportant] = useState(false);
 
     const {onItemAdded} = props;
@@ -15,12 +15,12 @@ function TaskInput (props) {
         
         onItemAdded(textInput, isImportant);
         
-        setInput('');
+        setTextInput('');
         setImportant(false);
     };
 
     function handleChangeInput(e) {
-        setInput(e.target.value)
+        setTextInput(e.target.value)
         
     };
 
