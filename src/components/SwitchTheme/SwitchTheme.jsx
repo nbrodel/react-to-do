@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import { themes } from '../../consts/themes';
+import { THEME } from '../../consts/themes';
 
-class SwitchTheme extends Component {
-    render() {
-        const {theme, onToggleTheme} = this.props;
+function SwitchTheme (props) {
+    const {theme, onToggleTheme} = props;
 
-        return (
-            <div>
-                <input 
-                    type="checkbox"
-                    onChange={onToggleTheme}
-                    checked={theme === themes.MOON}
-                />
-                <span>{theme} mode</span>
-            </div>
-        )
-    }
+    return (
+        <div>
+            <input 
+                type="checkbox"
+                onChange={onToggleTheme}
+                checked={theme === THEME.MOON}
+            />
+            
+            <span>{theme} mode</span>
+        </div>
+    )
 }
 
 export default SwitchTheme

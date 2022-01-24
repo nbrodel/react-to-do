@@ -1,4 +1,4 @@
-export const FILTERS = {
+export const FILTER = {
     ALL: 'All',
     ACTIVE: 'Active',
     DONE: 'Done',

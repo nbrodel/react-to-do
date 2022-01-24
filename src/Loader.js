@@ -5,6 +5,8 @@ export function Loader (Component) {
     constructor(props) {
       super(props);
 
+      this.flag = null;
+
       this.state = {
         isLoading: true
       }
@@ -12,23 +14,26 @@ export function Loader (Component) {
 
     toggleLoadState = () => {
       this.setState( preState => ({
-        isLoading: preState.loading
+        isLoading: !preState.isLoading
       }));
     }
 
     componentDidMount() {
-      setTimeout(
+      this.flag = setTimeout(
         this.toggleLoadState,
         1000
       );
     }
+    
+    componentWillUnmount() {
+      clearTimeout(this.flag)
+    }
 
     render() {
       const {isLoading} = this.state;
-      return isLoading ? <span>task is loading...</span> : <Component {...this.props} />
+      return isLoading ? <span>load...</span> : <Component {...this.props} />
     }
   }
 }
-  
 
 export default Loader;

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 
 import "./Task.css"
 
@@ -6,33 +6,31 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import PropTypes from 'prop-types';
 
-class Task extends Component {
-    render() {
-        const {text, date, isDone, isImportant,
-               handleToogleDone, handleDeleteTask, handleToggleImportant} = this.props;
+function Task (props) {
+    const {text, date, isDone, isImportant,
+           handleToogleDone, handleDeleteTask, handleToggleImportant} = props;
 
-        return <ThemeContext.Consumer>{ value =>
-            <Fragment>
-                <input className={value + ' important-control'} type="checkbox" checked={isImportant} onChange={handleToggleImportant} />
-                <input className={value + ' done-control'} type="checkbox" checked={isDone} onChange={handleToogleDone} />
+    return <ThemeContext.Consumer>{ value =>
+        <>
+            <input className={`${value} important-control`} type="checkbox" checked={isImportant} onChange={handleToggleImportant} />
+            <input className={`${value} done-control`} type="checkbox" checked={isDone} onChange={handleToogleDone} />
 
-                <span className='task-text'>{text}</span>
+            <span className='task-text'>{text}</span>
 
-                <button className='btn edit' >✏️</button>
-                <button className='btn delete' onClick={handleDeleteTask}>🗑️</button>
+            <button className='btn edit' >✏️</button>
+            <button className='btn delete' onClick={handleDeleteTask}>🗑️</button>
 
-                <span className='date'>Created: {date}</span>
-            </Fragment>
-        }
-        </ThemeContext.Consumer>
+            <span className='date'>Created: {date}</span>
+        </>
     }
+    </ThemeContext.Consumer>
 }
 
 Task.propTypes = {
-    text: PropTypes.string,
+    text: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date),
-    isDone: PropTypes.bool,
-    isImportant: PropTypes.bool
+    isDone: PropTypes.bool.isRequired,
+    isImportant: PropTypes.bool.isRequired
 }
 
 export default Task

@@ -3,10 +3,12 @@
 }
 
 body {
-  margin: 0px;
   font-family: 'Rubik', sans-serif;
   width: 800px;
   margin: 0 auto 0 auto;
   background-color: #ffffff;
-  /* #1a1b1f */
+}
+
+.moon body {
+  background-color: #1a1b1f;
 }
