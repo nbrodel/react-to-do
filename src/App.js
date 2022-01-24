@@ -1,15 +1,20 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Routes, Route, Link } from "react-router-dom"
 
 import About from './components/About/About'
 import Home from './components/Home/Home'
+import NotFound from './components/NotFound/NotFound'
+
+import {ROUTEPATH} from './consts/routes'
 
 function App () {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="about" element={<About />} />
+        <Route path={ROUTEPATH.NOTFOUND} element={<NotFound />} />
+
+        <Route path={ROUTEPATH.HOME} element={<Home />} />
+        <Route path={ROUTEPATH.ABOUT} element={<About />} />
       </Routes>
     </div>
   );
