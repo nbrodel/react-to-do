@@ -1,0 +1,11 @@
+nav {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: bisque;
+}
+
+.link {
+    margin-left: 10vw;
+    align-items: center;
+    text-decoration: none;
+}

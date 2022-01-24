@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import "./Heading.css"
+import "./Description.css"
 
 import PropTypes from 'prop-types';
 
