@@ -25,13 +25,11 @@ function App () {
 
   function handleAddTask(textTask, isImportant) {
     let isUnique = true;
-    for(let i = 0; i > tasks.length; i++)
+    for(let task of tasks)
     {
-      if(hasSameText(tasks[i].text, textTask))
-      {
-        isUnique = false;
+      isUnique = hasSameText(task.text, textTask);
+      if(!isUnique)
         break;
-      }
     }
 
     if(isUnique)
