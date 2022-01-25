@@ -20,11 +20,11 @@ function Home () {
   const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
 
-  function handleToggleTheme(e) {
+  const handleToggleTheme = (e) => {
     setTheme(e.target.checked ? THEME.MOON : THEME.LIGHT)
   }
 
-  function handleAddTask(textTask, isImportant) {
+  const handleAddTask = (textTask, isImportant) => {
     let isUnique = true;
     for(let task of tasks)
     {
@@ -51,15 +51,15 @@ function Home () {
       alert("this task already exists");
   };
 
-  function handleDeleteAllTasks() { setTasks([]) }
+  const handleDeleteAllTasks = () => { setTasks([]) }
 
-  function handleDeleteAllDoneTasks() {
+  const handleDeleteAllDoneTasks = () => {
     setTasks(tasks.filter(task => !task.isDone))
   }
 
-  function handleChangeMode(selectedMode) { setMode(selectedMode) }
+  const handleChangeMode = (selectedMode) => { setMode(selectedMode) }
 
-  function filterTasks(tasks, selectedMode) {
+  const filterTasks = (tasks, selectedMode) => {
     switch(selectedMode) {
       default: return tasks;
       case 'All': return tasks;
@@ -74,17 +74,17 @@ function Home () {
     }
   }
 
-  function handleToggleDone(id) {
+  const handleToggleDone = (id) => {
     setTasks(tasks.map(task => 
         task.id === id ? { ...task, isDone: !task.isDone } : task)
     );
   }
 
-  function handleDeleteTask (id) {
+  const handleDeleteTask = (id) => {
     setTasks (tasks.filter(task => task.id !== id));
   }
 
-  function handleToggleImportant(id) {
+  const handleToggleImportant = (id) => {
     setTasks(tasks.map(task => 
         task.id === id ? { ...task, isImportant: !task.isImportant } : task)
     );

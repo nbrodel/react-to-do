@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { THEME } from '../../consts/themes';
+import './SwitchTheme.css'
+
+import {THEME} from '../../consts/themes';
 
 function SwitchTheme (props) {
     const {theme, onToggleTheme} = props;

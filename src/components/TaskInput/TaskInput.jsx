@@ -10,7 +10,7 @@ function TaskInput (props) {
 
     const {onItemAdded} = props;
 
-    function handleSubmitTask(e) {
+    const handleSubmitTask = (e) => {
         e.preventDefault();
         
         onItemAdded(textInput, isImportant);
@@ -19,16 +19,11 @@ function TaskInput (props) {
         setImportant(false);
     };
 
-    function handleChangeInput(e) {
+    const handleChangeInput = (e) => {
         setTextInput(e.target.value)
-        
     };
 
-    function handleToggleImportant(e) {
-        setImportant(e.target.checked)
-    }
-
-    function handleToggleImportant(e){
+    const handleToggleImportant = (e) => {
         setImportant(e.target.checked)
     }
 

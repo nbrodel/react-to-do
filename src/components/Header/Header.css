@@ -2,12 +2,12 @@ nav {
     display: grid;
     grid-template-columns: 50% 50%;
     background-color: bisque;
-    padding: 10px;
-    border: solid;
 }
 
 .link {
-    margin-left: 10vw;
-    align-items: center;
+    height: 20px;
     text-decoration: none;
+    text-align: center;
+    border-color: black;
+    border-style: solid;
 }

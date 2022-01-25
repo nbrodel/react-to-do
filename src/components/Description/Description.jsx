@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 
 import "./Description.css"
 
@@ -10,13 +10,14 @@ function Heading (props) {
     const {activeTaskCount, activeImportantTaskCount} = props;
 
     return (
-        <header>
-            <h1 className='heading'>To-do app</h1>
+        <div>
+            <h1 className='heading'>To-do list</h1>
 
             <p className='description'>
                 Today is {date.toLocaleDateString()}.
-                You have {activeTaskCount} active task and {activeImportantTaskCount} important tasks.</p>
-        </header>
+                You have {activeTaskCount} active task and {activeImportantTaskCount} important tasks.
+            </p>
+        </div>
     )
 }
 
