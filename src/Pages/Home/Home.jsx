@@ -1,49 +1,31 @@
-import React, {useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {useState, useCallback} from 'react';
+import { observer, inject } from 'mobx-react';
 
-import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice';
+import Description from '../../components/Description/Description';
+import SwitchTheme from '../../components/SwitchTheme/SwitchTheme';
+import TaskInput from '../../components/TaskInput/TaskInput';
+import TaskTools from '../../components/TaskTools/TaskTools';
+import ModeSwitch from '../../components/ModeSwitch/ModeSwitch';
+import TaskList from '../../components/TaskList/TaskList';
+import Header from '../../components/Header/Header';
 
-import Description from '../../components/Description/Description'
-import SwitchTheme from '../../components/SwitchTheme/SwitchTheme'
-import TaskInput from '../../components/TaskInput/TaskInput'
-import TaskTools from '../../components/TaskTools/TaskTools'
-import ModeSwitch from '../../components/ModeSwitch/ModeSwitch'
-import TaskList from '../../components/TaskList/TaskList'
-import Header from '../../components/Header/Header'
+import {hasSameText} from '../../functions/functions';
 
-import {hasSameText} from '../../functions/functions'
-
-import {ThemeContext} from '../../contexts/ThemeContext'
+import {ThemeContext} from '../../contexts/ThemeContext';
 
 import {FILTER} from '../../consts/filters';
-import {THEME} from "../../consts/themes"
+import {THEME} from "../../consts/themes";
 
-function Home () {
-  const {tasks} = useSelector((state) => state.tasks);
+import tasksStore from '../../store/tasks/tasksStore'
+
+const Home = observer(({tasks}) => {
+  
   const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
 
-  const dispatch = useDispatch();
-
-  const handleDeleteAllTasks = () => { dispatch(deleteAllTasks([])) }
-
-  const handleDeleteAllDoneTasks = () => { dispatch(deleteAllDoneTasks(tasks)) }
-
-  const handleChangeMode = (selectedMode) => { setMode(selectedMode) }
-
-  const handleToggleDone = (id) => { dispatch(toggleDone(id)) }
-
-  const handleDeleteTask = (id) => { dispatch(deleteTask(id)) }
-
-  const handleToggleImportant = (id) => { dispatch(toggleImportant(id)) }
-
-  const handleToggleTheme = (e) => {
-    setTheme(e.target.checked ? THEME.MOON : THEME.LIGHT)
-  }
-
   const handleAddTask = (textTask, isImportant) => {
     let isUnique = true;
-    for(let task of tasks)
+    for(let task of tasksStore.tasks)
     {
       isUnique = hasSameText(task.text, textTask);
       if(!isUnique)
@@ -52,19 +34,52 @@ function Home () {
 
     if(isUnique)
     {
-      dispatch(
-        addTask({
-          id: Math.random(),
-          text: textTask,
-          isDone: false,
-          isImportant: isImportant && true,
-          date: new Date().toLocaleString()
-        }),
-      )
+      const newTask = {
+        id: Math.random(),
+        text: textTask,
+        isDone: false,
+        isImportant: isImportant && true,
+        date: new Date().toLocaleString()
+      };
+
+      tasks.addTask([newTask]);
     }
     else
       alert("this task already exists");
   };
+
+  const handleDeleteAllTasks = () => (
+    tasks.deleteAllTasks()
+  )
+
+  const handleDeleteAllDoneTasks = () => { tasks.deleteAllDoneTasks() };
+
+  const handleToggleDone = useCallback(
+    (id) => {
+      tasks.toggleDone(id);
+    },
+    [tasks.tasks],
+  );
+
+  const handleDeleteTask = useCallback(
+    (id) => {
+      tasks.deleteTask(id);
+    },
+    [tasks.tasks],
+  );
+
+  const handleToggleImportant = useCallback (
+    (id) => {
+      tasks.toggleImportant(id);
+    },
+    [tasks.tasks],
+  );
+
+  const handleToggleTheme = (e) => {
+    setTheme(e.target.checked ? THEME.MOON : THEME.LIGHT)
+  };
+
+  const handleChangeMode = (selectedMode) => { setMode(selectedMode) }
 
   const filterTasks = (tasks, selectedMode) => {
     switch(selectedMode) {
@@ -79,12 +94,12 @@ function Home () {
       case 'Unimportant':
         return tasks.filter(task => !task.isImportant);
     }
-  }
+  };
 
-  const activeTaskCount = tasks.filter(task => !task.isDone).length;
-  const activeImportantTaskCount = tasks.filter(task => task.isImportant).length;
+  const activeTaskCount = tasks.tasks.filter(task => !task.isDone).length;
+  const activeImportantTaskCount = tasks.tasks.filter(task => task.isImportant).length;
 
-  const currentTasks = filterTasks(tasks, mode);
+  const currentTasks = filterTasks(tasks.tasks, mode);
 
   return (
     <ThemeContext.Provider value={theme}>
@@ -116,6 +131,6 @@ function Home () {
         />
     </ThemeContext.Provider>
   );
-}
+});
 
-export default Home;
+export default inject('tasks')(Home);
