@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice';
+import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '@store/tasks/tasksSlice';
 
-import Description from '../../components/Description/Description'
-import SwitchTheme from '../../components/SwitchTheme/SwitchTheme'
-import TaskInput from '../../components/TaskInput/TaskInput'
-import TaskTools from '../../components/TaskTools/TaskTools'
-import ModeSwitch from '../../components/ModeSwitch/ModeSwitch'
-import TaskList from '../../components/TaskList/TaskList'
-import Header from '../../components/Header/Header'
+import Description from '@components/Description/Description'
+import SwitchTheme from '@components/SwitchTheme/SwitchTheme'
+import TaskInput from '@components/TaskInput/TaskInput'
+import TaskTools from '@components/TaskTools/TaskTools'
+import ModeSwitch from '@components/ModeSwitch/ModeSwitch'
+import TaskList from '@components/TaskList/TaskList'
+import Navigation from '@components/Navigation/Navigation'
 
-import {hasSameText} from '../../functions/functions'
+import {hasSameText} from '@functions/functions'
 
-import {ThemeContext} from '../../contexts/ThemeContext'
+import {ThemeContext} from '@contexts/ThemeContext'
 
-import {FILTER} from '../../consts/filters';
-import {THEME} from "../../consts/themes"
+import {FILTER} from '@consts/filters';
+import {THEME} from "@consts/themes"
 
 function Home () {
   const {tasks} = useSelector((state) => state.tasks);
@@ -88,7 +88,7 @@ function Home () {
 
   return (
     <ThemeContext.Provider value={theme}>
-        <Header />
+        <Navigation />
         <Description
           activeTaskCount={activeTaskCount}
           activeImportantTaskCount={activeImportantTaskCount}

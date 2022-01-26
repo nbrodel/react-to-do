@@ -2,7 +2,7 @@ import React from 'react'
 
 import "./Task.css"
 
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { ThemeContext } from '@contexts/ThemeContext';
 
 import PropTypes from 'prop-types';
 
