@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import "./TaskInput.css"
 
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { ThemeContext } from '@contexts/ThemeContext';
 
 function TaskInput (props) {
     const [textInput, setTextInput] = useState('');

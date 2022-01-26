@@ -5,7 +5,7 @@ import "./TaskList.css"
 
 import cn from 'classnames';
 
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { ThemeContext } from '@contexts/ThemeContext';
 
 import { Loader } from '../../Loader';
 
