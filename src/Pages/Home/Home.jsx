@@ -48,9 +48,7 @@ const Home = observer(({tasks}) => {
       alert("this task already exists");
   };
 
-  const handleDeleteAllTasks = () => (
-    tasks.deleteAllTasks()
-  )
+  const handleDeleteAllTasks = () => { tasks.deleteAllTasks([]) } 
 
   const handleDeleteAllDoneTasks = () => { tasks.deleteAllDoneTasks() };
 
