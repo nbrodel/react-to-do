@@ -13,7 +13,10 @@ const taskSlice = createSlice({
             const id = action.payload;
             state.tasks = state.tasks.filter(task => task.id !== id)
         },
-        deleteAllTasks (state, action) { state.tasks = action.payload },
+        deleteAllTasks (state, action) {
+            const emptyTasks = action.payload;
+            state.tasks = emptyTasks;
+        },
         deleteAllDoneTasks (state, action) {
             const tasks = action.payload;
             state.tasks = tasks.filter(task => !task.isDone)
