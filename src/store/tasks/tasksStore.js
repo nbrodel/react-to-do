@@ -1,5 +1,4 @@
 import {makeAutoObservable} from 'mobx'
-import { FILTER } from '../../consts/filters';
 
 class TasksStore {
     tasks = [];

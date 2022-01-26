@@ -18,10 +18,11 @@ import {THEME} from "../../consts/themes";
 
 import tasksStore from '../../store/tasks/tasksStore'
 
-const Home = observer(({tasks}) => {
-  
+const Home = ({tasks}) => {
   const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
+
+  const newTasks = tasks.tasks;
 
   const handleAddTask = (textTask, isImportant) => {
     let isUnique = true;
@@ -48,29 +49,29 @@ const Home = observer(({tasks}) => {
       alert("this task already exists");
   };
 
-  const handleDeleteAllTasks = () => { tasks.deleteAllTasks([]) } 
+  const handleDeleteAllTasks = () => tasks.deleteAllTasks([])
 
-  const handleDeleteAllDoneTasks = () => { tasks.deleteAllDoneTasks() };
+  const handleDeleteAllDoneTasks = () => tasks.deleteAllDoneTasks()
 
   const handleToggleDone = useCallback(
     (id) => {
       tasks.toggleDone(id);
     },
-    [tasks.tasks],
+    [newTasks],
   );
 
   const handleDeleteTask = useCallback(
     (id) => {
       tasks.deleteTask(id);
     },
-    [tasks.tasks],
+    [newTasks],
   );
 
   const handleToggleImportant = useCallback (
     (id) => {
       tasks.toggleImportant(id);
     },
-    [tasks.tasks],
+    [newTasks],
   );
 
   const handleToggleTheme = (e) => {
@@ -129,6 +130,6 @@ const Home = observer(({tasks}) => {
         />
     </ThemeContext.Provider>
   );
-});
+}
 
-export default inject('tasks')(Home);
+export default inject('tasks')(observer(Home));
