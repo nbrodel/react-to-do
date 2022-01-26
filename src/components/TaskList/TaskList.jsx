@@ -16,7 +16,7 @@ const TaskLoader = Loader(Task);
 function TaskList (props) {
     const {tasks, onToggleDone, onDeleteTask, onToggleImportant} = props;
 
-    const todos = tasks.map((task) => { 
+    const todos = tasks.map((task) => {
         const {id, isDone, isImportant, ...itemProps} = task;
 
         return <ThemeContext.Consumer>{ value =>

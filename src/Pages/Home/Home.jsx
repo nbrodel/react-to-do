@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice';
 
 import Description from '../../components/Description/Description'
 import SwitchTheme from '../../components/SwitchTheme/SwitchTheme'
@@ -12,13 +15,27 @@ import {hasSameText} from '../../functions/functions'
 
 import {ThemeContext} from '../../contexts/ThemeContext'
 
-import {FILTER} from '../../consts/filter';
+import {FILTER} from '../../consts/filters';
 import {THEME} from "../../consts/themes"
 
 function Home () {
-  const [tasks, setTasks] = useState([]);
+  const {tasks} = useSelector((state) => state.tasks);
   const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
+
+  const dispatch = useDispatch();
+
+  const handleDeleteAllTasks = () => { dispatch(deleteAllTasks([])) }
+
+  const handleDeleteAllDoneTasks = () => { dispatch(deleteAllDoneTasks(tasks)) }
+
+  const handleChangeMode = (selectedMode) => { setMode(selectedMode) }
+
+  const handleToggleDone = (id) => { dispatch(toggleDone(id)) }
+
+  const handleDeleteTask = (id) => { dispatch(deleteTask(id)) }
+
+  const handleToggleImportant = (id) => { dispatch(toggleImportant(id)) }
 
   const handleToggleTheme = (e) => {
     setTheme(e.target.checked ? THEME.MOON : THEME.LIGHT)
@@ -35,29 +52,19 @@ function Home () {
 
     if(isUnique)
     {
-      const newTask = {
-        id: Math.random(),
-        text: textTask,
-        isDone: false,
-        isImportant: isImportant && true,
-        date: new Date().toLocaleString()
-      };
-      
-      const newTasks = [ ...tasks, newTask];
-
-      setTasks(newTasks)
+      dispatch(
+        addTask({
+          id: Math.random(),
+          text: textTask,
+          isDone: false,
+          isImportant: isImportant && true,
+          date: new Date().toLocaleString()
+        }),
+      )
     }
     else
       alert("this task already exists");
   };
-
-  const handleDeleteAllTasks = () => { setTasks([]) }
-
-  const handleDeleteAllDoneTasks = () => {
-    setTasks(tasks.filter(task => !task.isDone))
-  }
-
-  const handleChangeMode = (selectedMode) => { setMode(selectedMode) }
 
   const filterTasks = (tasks, selectedMode) => {
     switch(selectedMode) {
@@ -72,22 +79,6 @@ function Home () {
       case 'Unimportant':
         return tasks.filter(task => !task.isImportant);
     }
-  }
-
-  const handleToggleDone = (id) => {
-    setTasks(tasks.map(task => 
-        task.id === id ? { ...task, isDone: !task.isDone } : task)
-    );
-  }
-
-  const handleDeleteTask = (id) => {
-    setTasks (tasks.filter(task => task.id !== id));
-  }
-
-  const handleToggleImportant = (id) => {
-    setTasks(tasks.map(task => 
-        task.id === id ? { ...task, isImportant: !task.isImportant } : task)
-    );
   }
 
   const activeTaskCount = tasks.filter(task => !task.isDone).length;

@@ -9,10 +9,10 @@ export default function About() {
 
         <h1>About</h1>
         <div className='contact'>
-            <img src={require('../../assets/author.jpg')} />
-            <span>nikita brodel</span>
-            <a href='https://t.me/nbrodel'>telegram</a>
-            <a href='https://github.com/nbrodel'>github</a>
+            <img src={require('../../assets/author.jpg')} /> <br />
+            <span className='name'>nikita brodel</span>
+            <a className='socials' href='https://t.me/nbrodel'>telegram</a>
+            <a className='socials' href='https://github.com/nbrodel'>github</a>
         </div>
     </div>
     );
