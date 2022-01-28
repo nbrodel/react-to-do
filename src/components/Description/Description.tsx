@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
+import React, { FC } from 'react'
 
 import "./Description.css"
 
-import PropTypes from 'prop-types';
+interface Props {
+    activeTaskCount: number,
+    activeImportantTaskCount: number
+}
 
-function Heading (props) {
-    const [date] = useState(new Date());
-
-    const {activeTaskCount, activeImportantTaskCount} = props;
+const Heading: FC<Props> = ({activeTaskCount, activeImportantTaskCount}) => {
+    const date = new Date();
 
     return (
         <div>
@@ -19,10 +20,6 @@ function Heading (props) {
             </p>
         </div>
     )
-}
-
-Heading.propTypes = {
-    date: PropTypes.instanceOf(Date)
 }
 
 export default Heading
