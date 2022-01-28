@@ -4,15 +4,7 @@ import "./Task.css"
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-interface TaskProps {
-    text: string,
-    date: string,
-    isDone: boolean,
-    isImportant: boolean,
-    toggleDone(): void,
-    toggleImportant(): void,
-    deleteTask(): void
-}
+import { TaskProps } from '../../models/ComponentProps';
 
 const Task: FC<TaskProps> = ({text, date, isDone, isImportant, toggleDone, deleteTask, toggleImportant}) => {
     return <ThemeContext.Consumer>{ value =>

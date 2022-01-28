@@ -1,7 +1,7 @@
-import React, {ChangeEvent, FC, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {ChangeEvent, FC, useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice';
+import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice'
 import { selectTasks } from '../../store/tasks/tasksSlice';
 
 import Description from '../../components/Description/Description'
@@ -16,15 +16,11 @@ import {hasSameText} from '../../functions/functions'
 
 import {ThemeContext} from '../../contexts/ThemeContext'
 
-import {FILTER} from '../../consts/filters';
+import {FILTER} from '../../consts/filters'
 import {THEME} from "../../consts/themes"
-import { ITask } from '../../models/task';
+import { ITask } from '../../models/task'
 
-interface Props {
-
-}
-
-const Home: FC<Props> = () => {
+function Home() {
   const tasks = useSelector(selectTasks);
   const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);

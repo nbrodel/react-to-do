@@ -2,12 +2,9 @@ import React, { FC } from 'react'
 
 import "./Description.css"
 
-interface Props {
-    activeTaskCount: number,
-    activeImportantTaskCount: number
-}
+import { DescriptionProps } from '../../models/ComponentProps';
 
-const Heading: FC<Props> = ({activeTaskCount, activeImportantTaskCount}) => {
+const Heading: FC<DescriptionProps> = ({activeTaskCount, activeImportantTaskCount}) => {
     const date = new Date();
 
     return (

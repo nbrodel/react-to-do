@@ -4,11 +4,9 @@ import "./ModeSwitch.css"
 
 import {FILTER} from '../../consts/filters'
 
-interface Props {
-    changeMode(filter: string): void
-}
+import { ModeSwitchProps } from '../../models/ComponentProps'
 
-const ModeSwitch: React.FC<Props> = ({changeMode}) => {
+const ModeSwitch: React.FC<ModeSwitchProps> = ({changeMode}) => {
 
     const filters = Object.values(FILTER).map((filter) => {
         const value = filter.toLowerCase();

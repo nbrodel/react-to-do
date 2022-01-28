@@ -7,20 +7,11 @@ import cn from 'classnames';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-/* import { Loader } from '../../Loader'; */
-
 import {ITask} from '../../models/task'
 
-/* const TaskLoader = Loader(Task); */
+import { TaskListProps } from '../../models/ComponentProps';
 
-interface TaskProps {
-    tasks: ITask[],
-    toggleDone(id: number): void,
-    toggleImportant(id: number): void,
-    deleteTask(id: number): void
-}
-
-const TaskList: React.FC<TaskProps> = ({tasks, toggleDone, toggleImportant, deleteTask}) => {
+const TaskList: React.FC<TaskListProps> = ({tasks, toggleDone, toggleImportant, deleteTask}) => {
     if(!tasks.length)
     {
         return <p>дел нет</p>

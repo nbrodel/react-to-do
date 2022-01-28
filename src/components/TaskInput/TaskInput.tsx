@@ -4,11 +4,9 @@ import "./TaskInput.css"
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-interface Props {
-    addItem(textInput: string, isImportant: boolean): void
-}
+import { TaskInputProps } from '../../models/ComponentProps';
 
-const TaskInput: FC<Props> = ({addItem}) => {
+const TaskInput: FC<TaskInputProps> = ({addItem}) => {
     const [textInput, setTextInput] = useState('');
     const [isImportant, setImportant] = useState(false);
 

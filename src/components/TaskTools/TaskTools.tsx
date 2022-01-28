@@ -2,12 +2,9 @@ import React, { FC } from 'react'
 
 import "./TaskTools.css"
 
-interface Props {
-    deleteAllTasks(): void,
-    deleteAllDoneTasks(): void
-}
+import { TaskToolsProps } from '../../models/ComponentProps'
 
-const TaskTools: FC<Props> = ({deleteAllTasks, deleteAllDoneTasks}) => {
+const TaskTools: FC<TaskToolsProps> = ({deleteAllTasks, deleteAllDoneTasks}) => {
     
     return (
         <div className='task-tools'>

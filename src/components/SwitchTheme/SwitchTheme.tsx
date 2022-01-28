@@ -4,12 +4,9 @@ import './SwitchTheme.css'
 
 import {THEME} from '../../consts/themes';
 
-interface Props {
-    theme: string,
-    toggleTheme(e: ChangeEvent<HTMLInputElement>): void
-}
+import { SwitchThemeProps } from '../../models/ComponentProps';
 
-const SwitchTheme: FC<Props> = ({theme, toggleTheme}) => {
+const SwitchTheme: FC<SwitchThemeProps> = ({theme, toggleTheme}) => {
     return (
         <div>
             <input 
