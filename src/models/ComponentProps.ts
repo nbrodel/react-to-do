@@ -1,12 +1,12 @@
 import { ChangeEvent } from "react"
-import { ITask } from "./task"
+import { ITask } from "./ITask"
 
 export type DescriptionProps = {
     activeTaskCount: number,
     activeImportantTaskCount: number
 }
 
-export type ModeSwitchProps = {
+export type FilterSwitcherProps = {
     changeMode(filter: string): void
 }
 
@@ -22,7 +22,8 @@ export type TaskProps = {
     isImportant: boolean,
     toggleDone(): void,
     toggleImportant(): void,
-    deleteTask(): void
+    deleteTask(): void,
+    changeTask(): void
 }
 
 export type TaskInputProps = {
@@ -34,6 +35,7 @@ export type TaskListProps = {
     toggleDone(id: number): void,
     toggleImportant(id: number): void,
     deleteTask(id: number): void
+    changeTask(id: number, text: string): void
 }
 
 export type TaskToolsProps = {

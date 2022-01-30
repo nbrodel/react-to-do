@@ -1,0 +1,47 @@
+.theme-switcher{
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.background-switch {
+    background-color: #fcd63d;
+    border-radius: 20px;
+    box-shadow: 4px 4px 0px 0px black;
+    border-style: solid;
+}
+
+.light.background-switch {
+    background-color: #ffb09c;
+}
+
+.moon.background-switch {
+    background-color: #fcd63d;
+}
+
+.theme-toggler {
+    margin-bottom: 30px;
+    visibility: hidden;
+    font-size: 26px;
+    cursor:pointer;
+}
+
+.theme-toggler:before {
+    content: "🔘";
+    visibility: visible;
+}
+ 
+.moon.theme-toggler:before {
+    content: "🌑";
+}
+
+.theme-text {
+    top: 15px;
+    position: relative;
+
+    margin-left: 20px;
+
+    font-size: 26px;
+}

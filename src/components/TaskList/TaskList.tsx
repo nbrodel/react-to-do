@@ -5,32 +5,34 @@ import "./TaskList.css"
 
 import cn from 'classnames';
 
-import { ThemeContext } from '../../contexts/ThemeContext';
+import {ThemeContext} from '../../contexts/ThemeContext';
 
-import {ITask} from '../../models/task'
+import {ITask} from '../../models/ITask'
 
-import { TaskListProps } from '../../models/ComponentProps';
+import {TaskListProps} from '../../models/ComponentProps';
 
-const TaskList: React.FC<TaskListProps> = ({tasks, toggleDone, toggleImportant, deleteTask}) => {
+const TaskList: React.FC<TaskListProps> = ({tasks, toggleDone, toggleImportant, deleteTask, changeTask}) => {
+
     if(!tasks.length)
     {
-        return <p>дел нет</p>
+        return <p>No tasks yet. Enjoy your life!</p>
     }
 
     const todos = tasks.map((task: ITask) => {
-        const {id, isDone, isImportant, ...itemProps} = task;
+        const {id, isDone, isImportant, text, ...itemProps} = task;
 
         return <ThemeContext.Consumer>{ value =>
             <div key={id} className={`${value} ${cn('task', {'important': isImportant}, {'done': isDone})}`}>
                 <Task
-                    {...itemProps}
-                        
+                    {...itemProps}   
                     isDone={isDone}
                     isImportant={isImportant}
+                    text={text}
                     
                     toggleDone = {() => toggleDone(id)}
-                    deleteTask = {() => deleteTask(id)}
                     toggleImportant = {() => toggleImportant(id)}
+                    deleteTask = {() => deleteTask(id)}
+                    changeTask = {() => changeTask(id, text)}
                 />
             </div>
             }
@@ -38,7 +40,7 @@ const TaskList: React.FC<TaskListProps> = ({tasks, toggleDone, toggleImportant, 
     });
     
     return (
-        <div className='task-list'>
+        <div>
             {todos}
         </div>
     )

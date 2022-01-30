@@ -1,5 +1,5 @@
 export const ROUTEPATH = {
     NOTFOUND: '*',
     HOME: '/',
-    ABOUT: 'about'
+    ABOUT: '/about'
 }

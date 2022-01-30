@@ -1,28 +1,46 @@
 :root {
-    --light-task: #387a57;
-    --light-task-important: #ffd5d5;
+    --light-task: #9ff1b7;
+    --light-task-important: #ffb09c;
 
     --moon-task: #fcd63d;
-    --moon-task-important: rebeccapurple;
+    --moon-task-important: #2f4a58;
 
     --task-done: green;
+
+    --task-shadow: 6px 6px 0px 0px black;
+}
+
+.task-list {
+    margin-top: 10px;
+    margin-bottom: 50px;
+
+    padding: 10px;
+
+    background-color: #fcf4e6;
+
+    border-radius: 20px;
+    border-style: solid;
+    box-shadow: var(--task-shadow);
+
 }
 
 .task {
-    height: 60px;
+    height: calc();
 
     display: grid;
-    grid-template-columns: 5.5% 4.5% 80% 5% 5%;
-    align-items: center;
-    
-    margin-top: 10px;
-    margin-bottom: 10px;
+    grid-template-columns: 4% 4% 80% 5% 5%;
+    align-items: baseline;
+
+    margin: 20px;
+
     padding: 10px;
 
-    border-radius: 20px;
-    border: 0.3rem solid;
-
     background-color: var(--light-task);
+
+    border-radius: 20px;
+    border-style: solid;
+
+    box-shadow: var(--task-shadow);  
 }
 
 .task.important {
@@ -38,7 +56,7 @@
 }
 
 .task.important .task-text{
-    font-size: 27px;
+    font-size: 30px;
 }
 
 .task.done .task-text{

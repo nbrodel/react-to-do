@@ -1,14 +1,14 @@
-import React, { ChangeEvent, FC, FormEvent, useState } from 'react'
+import React, {ChangeEvent, FC, FormEvent, useState} from 'react'
 
 import "./TaskInput.css"
 
-import { ThemeContext } from '../../contexts/ThemeContext';
+import {ThemeContext} from '../../contexts/ThemeContext';
 
-import { TaskInputProps } from '../../models/ComponentProps';
+import {TaskInputProps} from '../../models/ComponentProps';
 
 const TaskInput: FC<TaskInputProps> = ({addItem}) => {
-    const [textInput, setTextInput] = useState('');
-    const [isImportant, setImportant] = useState(false);
+    const [textInput, setTextInput] = useState<string>('');
+    const [isImportant, setImportant] = useState<boolean>(false);
 
     const handleSubmitTask = (e: FormEvent) => {
         e.preventDefault();
@@ -37,13 +37,13 @@ const TaskInput: FC<TaskInputProps> = ({addItem}) => {
             />
             
             <input 
-                className={`${value} important-control`}
+                className={`${value} important-control-form`}
                 type="checkbox" 
                 onChange={handleToggleImportant}
                 checked={isImportant}
             />
 
-            <button className='btn-add'>Add</button>
+            <button className='btn-add'><span>Add</span></button>
         </form>
     }
     </ThemeContext.Consumer>

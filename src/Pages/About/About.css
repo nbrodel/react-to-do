@@ -1,14 +1,61 @@
-img {
-    width: 120px;
-    height: 160px;
-    border-radius: 0%;
+:root {
+    --shadow: 6px 6px 0px 0px black;
 }
 
 .contact {
-    background-color: bisque;
+    margin-top: 10px;
+    margin-bottom: 50px;
+
     padding: 10px;
+
+    background-color: #fcf4e6;
+
+    font-size: 26px;
+
+    border-radius: 20px;
+    border-style: solid;
+
+    box-shadow: var(--shadow);
+}
+
+.about {
+    font-size: 60px;
+    text-align: center;
+}
+
+.author-photo {
+    width: 20%;
+    height: 100%;
+
+    border-width: 5px;
+    border-style: solid;
+}
+
+.author-photo:hover {
+    box-shadow: var(--shadow);
+}
+
+.author-name {
+    margin-bottom: 10px;
 }
 
 .socials {
+    width: 200px;
+    margin-top: 10px;
+    padding: 5px;
+
+    background-color: tomato;
+
+    border-radius: 20px;
+    border-style: solid;
+
+    box-shadow: var(--shadow);
+}
+
+.socials a {
+    text-decoration: none;
+}
+
+.social-git {
     margin-left: 10px;
 }
