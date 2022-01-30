@@ -7,18 +7,13 @@ import cn from 'classnames';
 
 import {ThemeContext} from '../../contexts/ThemeContext';
 
-import {ITask} from '../../models/ITask'
+import {TTaskListProps} from '../../models/ComponentProps';
 
-import {TaskListProps} from '../../models/ComponentProps';
+const TaskList: React.FC<TTaskListProps> = ({tasks, toggleDone, toggleImportant, deleteTask, changeTask}) => {
 
-const TaskList: React.FC<TaskListProps> = ({tasks, toggleDone, toggleImportant, deleteTask, changeTask}) => {
+    if(!tasks.length) return <p>No tasks yet. Enjoy your life!</p>
 
-    if(!tasks.length)
-    {
-        return <p>No tasks yet. Enjoy your life!</p>
-    }
-
-    const todos = tasks.map((task: ITask) => {
+    const todos = tasks.map((task) => {
         const {id, isDone, isImportant, text, ...itemProps} = task;
 
         return <ThemeContext.Consumer>{ value =>

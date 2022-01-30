@@ -7,14 +7,11 @@
 }
 
 .essential {
-    height: calc();
-    width: calc();
-
     padding: 5px;
 
     border-radius: 15px;
     border-style: solid;
-    border: 2px solid;
+    border-width: 2px;
 
     background-color: tomato;
 }

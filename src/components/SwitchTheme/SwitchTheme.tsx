@@ -6,9 +6,9 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import {THEME} from '../../consts/themes';
 
-import {SwitchThemeProps} from '../../models/ComponentProps';
+import {TSwitchThemeProps} from '../../models/ComponentProps';
 
-const SwitchTheme: FC<SwitchThemeProps> = ({theme, toggleTheme}) => {
+const SwitchTheme: FC<TSwitchThemeProps> = ({theme, toggleTheme}) => {
     return <ThemeContext.Consumer>{ value =>
         <div className='theme-switcher'>
             <span className={`${value} background-switch`}>

@@ -4,7 +4,7 @@ import './About.css'
 
 export default function About() {
     return (
-    <div>
+    <>
         <Navigation />
 
         <div className='contact'>
@@ -17,7 +17,8 @@ export default function About() {
                 <a className='social-git' href='https://github.com/nbrodel'>github</a>
             </div>
 
-            <ul className='exposition'>On this course I create simple to-do app and learned:
+            <p>On this course I create simple to-do app and learned:</p>
+            <ul className='exposition'>
                 <li>use class components</li>
                 <li>add context</li>
                 <li>apply HOC</li>
@@ -29,6 +30,6 @@ export default function About() {
                 <li>typing components with typescript</li>
             </ul>
         </div>
-    </div>
+    </>
     );
 }

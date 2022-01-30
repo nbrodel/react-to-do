@@ -4,9 +4,9 @@ import "./FilterSwitcher.css"
 
 import {FILTER} from '../../consts/filters'
 
-import {FilterSwitcherProps} from '../../models/ComponentProps'
+import {TFilterSwitcherProps} from '../../models/ComponentProps'
 
-const FilterSwitcher: React.FC<FilterSwitcherProps> = ({changeMode}) => {
+const FilterSwitcher: React.FC<TFilterSwitcherProps> = ({changeMode}) => {
     const [activeFilter, setActiveFilter] = useState<string | undefined>(FILTER.ALL);
 
     const filters = Object.values(FILTER).map((filter) => {

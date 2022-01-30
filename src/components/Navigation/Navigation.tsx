@@ -3,13 +3,13 @@ import {Link} from "react-router-dom";
 
 import './Navigation.css'
 
-import {ROUTEPATH} from '../../consts/routes';
+import {ROUTE_PATH} from '../../consts/routes';
 
 export default function Header() {
   return (
       <nav>
-          <Link className='link' to={ROUTEPATH.HOME}>Home</Link>
-          <Link className='link' to={ROUTEPATH.ABOUT}>About</Link>
+          <Link className='link' to={ROUTE_PATH.HOME}>Home</Link>
+          <Link className='link' to={ROUTE_PATH.ABOUT}>About</Link>
       </nav>
   );
 }

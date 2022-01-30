@@ -3,7 +3,7 @@ import Navigation from '../../components/Navigation/Navigation';
 
 import './NotFound.css'
 
-export default function NotFound() {
+function NotFound() {
   return (
     <>
         <Navigation />
@@ -14,3 +14,5 @@ export default function NotFound() {
     </>
   );
 }
+
+export default NotFound

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, FC, useState} from 'react'
 import {useSelector} from 'react-redux'
 
 import {addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant, changeTask} from '../../store/tasks/tasksSlice'
@@ -25,7 +25,7 @@ import {ITask} from '../../models/ITask'
 
 import {useAppDispatch} from '../../store/tasks/store'
 
-function Home() {
+const Home: FC<{}> = () => {
   const tasks = useSelector(selectTasks);
   const [mode, setMode] = useState<string>(FILTER.ALL);
   const [theme, setTheme] = useState<string>(THEME.LIGHT);
@@ -46,10 +46,8 @@ function Home() {
 
   const handleChangeTask = (id: number, currentText: string) => {
     const text = prompt('change current task', currentText)
-    if(isUnique(text))
-      dispatch(changeTask({id, text}))
-    else
-      alert("This task already exists");
+    if(isUnique(text)) dispatch(changeTask({id, text}))
+    alert('This task already exists');
   }
 
   const handleToggleTheme = (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,22 +71,22 @@ function Home() {
         )
       }
       else
-        alert("This task already exists");
+        alert('This task already exists');
     }
   };
 
   const isUnique = (taskText: string | null) => {
     let isUnique = true;
-    for(let task of tasks)
+    for(let i = 0; i < tasks.length; i++)
     {
-      isUnique = hasSameText(task.text, taskText);
+      isUnique = hasSameText(tasks[i].text, taskText);
       if(!isUnique)
         break;
     }
     return isUnique;
   }
 
-  const filterTasks = (tasks: Array<ITask>, selectedMode: string) => {
+  const filterTasks = (tasks: ITask[], selectedMode: string) => {
     switch(selectedMode) {
       default: return tasks;
       case 'All': return tasks;

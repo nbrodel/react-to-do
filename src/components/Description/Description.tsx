@@ -2,9 +2,9 @@ import React, { FC } from 'react'
 
 import "./Description.css"
 
-import {DescriptionProps} from '../../models/ComponentProps';
+import {TDescriptionProps} from '../../models/ComponentProps';
 
-const Description: FC<DescriptionProps> = ({activeTaskCount, activeImportantTaskCount}) => {
+const Description: FC<TDescriptionProps> = ({activeTaskCount, activeImportantTaskCount}) => {
     const date = new Date();
 
     return (

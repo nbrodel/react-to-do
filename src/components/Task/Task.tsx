@@ -4,9 +4,9 @@ import "./Task.css"
 
 import {ThemeContext} from '../../contexts/ThemeContext';
 
-import {TaskProps} from '../../models/ComponentProps';
+import {TTaskProps} from '../../models/ComponentProps';
 
-const Task: FC<TaskProps> = ({text, date, isDone, isImportant, toggleDone, deleteTask, toggleImportant, changeTask}) => {
+const Task: FC<TTaskProps> = ({text, date, isDone, isImportant, toggleDone, deleteTask, toggleImportant, changeTask}) => {
     return <ThemeContext.Consumer>{ value =>
         <>
             <input className={`${value} important-control`} type="checkbox" checked={isImportant} onChange={toggleImportant} />

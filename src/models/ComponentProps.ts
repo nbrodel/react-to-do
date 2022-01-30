@@ -1,21 +1,21 @@
 import { ChangeEvent } from "react"
 import { ITask } from "./ITask"
 
-export type DescriptionProps = {
+export type TDescriptionProps = {
     activeTaskCount: number,
     activeImportantTaskCount: number
 }
 
-export type FilterSwitcherProps = {
+export type TFilterSwitcherProps = {
     changeMode(filter: string): void
 }
 
-export type SwitchThemeProps = {
+export type TSwitchThemeProps = {
     theme: string,
     toggleTheme(e: ChangeEvent<HTMLInputElement>): void
 }
 
-export type TaskProps = {
+export type TTaskProps = {
     text: string,
     date: string,
     isDone: boolean,
@@ -26,11 +26,11 @@ export type TaskProps = {
     changeTask(): void
 }
 
-export type TaskInputProps = {
+export type TTaskInputProps = {
     addItem(textInput: string, isImportant: boolean): void
 }
 
-export type TaskListProps = {
+export type TTaskListProps = {
     tasks: ITask[],
     toggleDone(id: number): void,
     toggleImportant(id: number): void,
@@ -38,7 +38,7 @@ export type TaskListProps = {
     changeTask(id: number, text: string): void
 }
 
-export type TaskToolsProps = {
+export type TTaskToolsProps = {
     deleteAllTasks(): void,
     deleteAllDoneTasks(): void
 }
