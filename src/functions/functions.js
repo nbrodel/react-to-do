@@ -1,1 +1,0 @@
-export const hasSameText = (firstText, secondText) => firstText.toLowerCase() !== secondText.toLowerCase();

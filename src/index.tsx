@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { StrictMode } from 'react/cjs/react.production.min';
+import { StrictMode } from 'react';
 import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from 'react-redux';
-import store from '../src/store/tasks'
+import store from './store/tasks/store'
 
 import './index.css';
 import App from './App';

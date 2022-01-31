@@ -1,6 +1,5 @@
 :root {
-    --white: #ffffff;
-    --dark: #1a1b1f;
+    --shadow: 3px 3px 0px 0px black;
 }
 
 .important-control {
@@ -8,11 +7,12 @@
     height: 1.5em;
 
     visibility: hidden;
-    font-size: 24px;
+    font-size: 30px;
     cursor: pointer;
 }
 
 .moon.important-control:before {
+    visibility: visible;
     content: "🌑";
 }
 
@@ -21,19 +21,17 @@
 }
 
 .light.important-control:before {
-   content: "🔘";
+    visibility: visible;
+    content: "🔘";
 }
 
 .light.important-control:checked:before {
-   content: "🔴";
+    content: "🔴";
 }
 
 .done-control {
-    width: 1.5em;
-    height: 1.5em;
-    
     visibility: hidden;
-    font-size: 24px;
+    font-size: 30px;
 
     cursor: pointer;
 }
@@ -48,7 +46,7 @@
 }
 
 .task-text {
-    font-size: 26px;
+    font-size: 30px;
 }
 
 .date {
@@ -58,23 +56,27 @@
 }
 
 .btn {
-    width: 30px;
-    height: 30px;
-
-    margin-left: 0.2em;
-    margin-right: 0.2em;
+    width: 50px;
+    height: 50px;
     
-    border: 0.01rem solid;
-    background-color: transparent;
+    font-size: 22px;
+
+    border-radius: 20px;
+    border-style: solid;
+    border-color: black;
+
+    background-color: #fcf4e6;
 
     cursor: pointer;
+    
 }
 
 .btn.edit:hover {
-    background-color: grey;
-    
+    background-color: royalblue;
+    box-shadow: var(--shadow);
 }
 
 .btn.delete:hover {
     background-color: crimson;
+    box-shadow: var(--shadow);
 }

@@ -1,29 +1,29 @@
-import React, { useState } from 'react'
+import React, {ChangeEvent, FC, FormEvent, useState} from 'react'
 
 import "./TaskInput.css"
 
-import { ThemeContext } from '@contexts/ThemeContext';
+import {ThemeContext} from '../../contexts/ThemeContext';
 
-function TaskInput (props) {
-    const [textInput, setTextInput] = useState('');
-    const [isImportant, setImportant] = useState(false);
+import {TTaskInputProps} from '../../models/ComponentProps';
 
-    const {onItemAdded} = props;
+const TaskInput: FC<TTaskInputProps> = ({addItem}) => {
+    const [textInput, setTextInput] = useState<string>('');
+    const [isImportant, setImportant] = useState<boolean>(false);
 
-    const handleSubmitTask = (e) => {
+    const handleSubmitTask = (e: FormEvent) => {
         e.preventDefault();
         
-        onItemAdded(textInput, isImportant);
+        addItem(textInput, isImportant);
         
         setTextInput('');
         setImportant(false);
     };
 
-    const handleChangeInput = (e) => {
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
         setTextInput(e.target.value)
     };
 
-    const handleToggleImportant = (e) => {
+    const handleToggleImportant = (e: ChangeEvent<HTMLInputElement>) => {
         setImportant(e.target.checked)
     }
 
@@ -37,13 +37,13 @@ function TaskInput (props) {
             />
             
             <input 
-                className={`${value} important-control`}
+                className={`${value} important-control-form`}
                 type="checkbox" 
                 onChange={handleToggleImportant}
                 checked={isImportant}
             />
 
-            <button className='btn-add'>Add</button>
+            <button className='btn-add'><span>Add</span></button>
         </form>
     }
     </ThemeContext.Consumer>
