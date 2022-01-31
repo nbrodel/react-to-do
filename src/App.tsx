@@ -1,9 +1,9 @@
 import React from 'react'
 import { Routes, Route } from "react-router-dom"
 
-import About from './Pages/About/About'
-import Home from './Pages/Home/Home'
-import NotFound from './Pages/NotFound/NotFound'
+import About from './pages/About/About'
+import Home from './pages/Home/Home'
+import NotFound from './pages/NotFound/NotFound'
 
 import {ROUTE_PATH} from './consts/routes'
 
