@@ -1,11 +1,18 @@
 import React from 'react';
 import Navigation from '../../components/Navigation/Navigation';
 
-export default function NotFound() {
+import './NotFound.css'
+
+function NotFound() {
   return (
-    <div>
+    <>
         <Navigation />
-        <h1>Page not found</h1>
-    </div>
+        <div className='not-found'>
+          <h1 className='not-found-text'>404 Page not found</h1>
+          <img src={require('../../assets/scarecrow.png')} alt='404' className='scarecrow'/>
+        </div>
+    </>
   );
 }
+
+export default NotFound

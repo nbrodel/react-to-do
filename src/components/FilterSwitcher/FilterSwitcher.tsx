@@ -1,18 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-import "./ModeSwitch.css"
+import "./FilterSwitcher.css"
 
 import {FILTER} from '../../consts/filters'
 
-import { ModeSwitchProps } from '../../models/ComponentProps'
+import {TFilterSwitcherProps} from '../../models/ComponentProps'
 
-const ModeSwitch: React.FC<ModeSwitchProps> = ({changeMode}) => {
+const FilterSwitcher: React.FC<TFilterSwitcherProps> = ({changeMode}) => {
+    const [activeFilter, setActiveFilter] = useState<string | undefined>(FILTER.ALL);
 
     const filters = Object.values(FILTER).map((filter) => {
         const value = filter.toLowerCase();
-        
+
         const onChangeMode = () => {
             changeMode(filter)
+            setActiveFilter(filter)
         }
 
         return <button className={`mode-${value}`} key={filter} onClick={onChangeMode}>{filter}</button>
@@ -21,8 +23,9 @@ const ModeSwitch: React.FC<ModeSwitchProps> = ({changeMode}) => {
     return (  
         <div className='switches'>
             {filters}
+            <span className='active-filter'>{activeFilter} tasks</span>
         </div>
     )
 }
 
-export default ModeSwitch
+export default FilterSwitcher

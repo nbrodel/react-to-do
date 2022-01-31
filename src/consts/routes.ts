@@ -1,5 +1,5 @@
-export const ROUTEPATH = {
+export const ROUTE_PATH = {
     NOTFOUND: '*',
     HOME: '/',
-    ABOUT: 'about'
+    ABOUT: '/about'
 }

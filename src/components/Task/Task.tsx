@@ -1,12 +1,12 @@
-import React, { FC } from 'react'
+import React, {FC} from 'react'
 
 import "./Task.css"
 
-import { ThemeContext } from '../../contexts/ThemeContext';
+import {ThemeContext} from '../../contexts/ThemeContext';
 
-import { TaskProps } from '../../models/ComponentProps';
+import {TTaskProps} from '../../models/ComponentProps';
 
-const Task: FC<TaskProps> = ({text, date, isDone, isImportant, toggleDone, deleteTask, toggleImportant}) => {
+const Task: FC<TTaskProps> = ({text, date, isDone, isImportant, toggleDone, deleteTask, toggleImportant, changeTask}) => {
     return <ThemeContext.Consumer>{ value =>
         <>
             <input className={`${value} important-control`} type="checkbox" checked={isImportant} onChange={toggleImportant} />
@@ -14,8 +14,9 @@ const Task: FC<TaskProps> = ({text, date, isDone, isImportant, toggleDone, delet
 
             <span className='task-text'>{text}</span>
 
-            <button className='btn edit' >✏️</button>
-            <button className='btn delete' onClick={deleteTask}>🗑️</button>
+            <button className='btn edit' onClick={changeTask}><span>✏️</span></button>
+            
+            <button className='btn delete' onClick={deleteTask}><span>🗑️</span></button>
 
             <span className='date'>Created: {date}</span>
         </>

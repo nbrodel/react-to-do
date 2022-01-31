@@ -1,7 +1,32 @@
+.description {
+    font-size: 30px;
+}
+
 .heading{
     text-align: center;
 }
 
-.description {
-    font-size: 16px;
+.essential {
+    padding: 5px;
+
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+
+    background-color: tomato;
+}
+
+.essential:hover{
+    box-shadow: 3px 3px 0px 0px black;
+}
+
+.local-date {
+    top: -150px;
+
+    float: right;
+    position: relative;
+    
+    font-size: 14px;
+    
+    background-color: #787ff0;
 }
