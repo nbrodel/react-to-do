@@ -1,4 +1,4 @@
-# [to-do](https://nbrodel.github.io/)
+# to-do
 
 ## Brodel Nikita
 ## https://t.me/nbrodel
