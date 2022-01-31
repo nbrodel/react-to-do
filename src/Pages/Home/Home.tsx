@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, {ChangeEvent, FC, useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice';
+import { addTask, deleteAllTasks, deleteAllDoneTasks, deleteTask, toggleDone, toggleImportant } from '../../store/tasks/tasksSlice'
+import { selectTasks } from '../../store/tasks/tasksSlice';
 
 import Description from '../../components/Description/Description'
 import SwitchTheme from '../../components/SwitchTheme/SwitchTheme'
@@ -9,17 +10,18 @@ import TaskInput from '../../components/TaskInput/TaskInput'
 import TaskTools from '../../components/TaskTools/TaskTools'
 import ModeSwitch from '../../components/ModeSwitch/ModeSwitch'
 import TaskList from '../../components/TaskList/TaskList'
-import Header from '../../components/Header/Header'
+import Navigation from '../../components/Navigation/Navigation'
 
 import {hasSameText} from '../../functions/functions'
 
 import {ThemeContext} from '../../contexts/ThemeContext'
 
-import {FILTER} from '../../consts/filters';
+import {FILTER} from '../../consts/filters'
 import {THEME} from "../../consts/themes"
+import { ITask } from '../../models/task'
 
-function Home () {
-  const {tasks} = useSelector((state) => state.tasks);
+function Home() {
+  const tasks = useSelector(selectTasks);
   const [mode, setMode] = useState(FILTER.ALL);
   const [theme, setTheme] = useState(THEME.MOON);
 
@@ -27,21 +29,21 @@ function Home () {
 
   const handleDeleteAllTasks = () => { dispatch(deleteAllTasks([])) }
 
-  const handleDeleteAllDoneTasks = () => { dispatch(deleteAllDoneTasks(tasks)) }
+  const handleDeleteAllDoneTasks = () => { dispatch(deleteAllDoneTasks()) }
 
-  const handleChangeMode = (selectedMode) => { setMode(selectedMode) }
+  const handleChangeMode = (selectedMode: string) => { setMode(selectedMode) }
 
-  const handleToggleDone = (id) => { dispatch(toggleDone(id)) }
+  const handleToggleDone = (id: number) => { dispatch(toggleDone(id)) }
 
-  const handleDeleteTask = (id) => { dispatch(deleteTask(id)) }
+  const handleDeleteTask = (id: number) => { dispatch(deleteTask(id)) }
 
-  const handleToggleImportant = (id) => { dispatch(toggleImportant(id)) }
+  const handleToggleImportant = (id: number) => { dispatch(toggleImportant(id)) }
 
-  const handleToggleTheme = (e) => {
+  const handleToggleTheme = (e: ChangeEvent<HTMLInputElement>) => {
     setTheme(e.target.checked ? THEME.MOON : THEME.LIGHT)
   }
 
-  const handleAddTask = (textTask, isImportant) => {
+  const handleAddTask = (textTask: string, isImportant: boolean) => {
     let isUnique = true;
     for(let task of tasks)
     {
@@ -66,7 +68,7 @@ function Home () {
       alert("this task already exists");
   };
 
-  const filterTasks = (tasks, selectedMode) => {
+  const filterTasks = (tasks: Array<ITask>, selectedMode: string) => {
     switch(selectedMode) {
       default: return tasks;
       case 'All': return tasks;
@@ -88,31 +90,31 @@ function Home () {
 
   return (
     <ThemeContext.Provider value={theme}>
-        <Header />
+        <Navigation />
         <Description
           activeTaskCount={activeTaskCount}
           activeImportantTaskCount={activeImportantTaskCount}
         />
 
         <SwitchTheme
-          onToggleTheme={handleToggleTheme}
+          toggleTheme={handleToggleTheme}
           theme={theme}
         />
 
-        <TaskInput onItemAdded={handleAddTask} />
+        <TaskInput addItem={handleAddTask} />
 
         <TaskTools
-          onDeleteAllTasks = {handleDeleteAllTasks}
-          onDeleteAllDoneTasks = {handleDeleteAllDoneTasks}
+          deleteAllTasks = {handleDeleteAllTasks}
+          deleteAllDoneTasks = {handleDeleteAllDoneTasks}
         />
 
-        <ModeSwitch onChangeMode={handleChangeMode} />
+        <ModeSwitch changeMode={handleChangeMode} />
 
         <TaskList
           tasks={currentTasks}
-          onToggleDone={handleToggleDone} 
-          onDeleteTask={handleDeleteTask} 
-          onToggleImportant = {handleToggleImportant}
+          toggleDone={handleToggleDone} 
+          deleteTask={handleDeleteTask} 
+          toggleImportant = {handleToggleImportant}
         />
     </ThemeContext.Provider>
   );

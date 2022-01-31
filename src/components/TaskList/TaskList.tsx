@@ -7,33 +7,34 @@ import cn from 'classnames';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-import { Loader } from '../../Loader';
+import {ITask} from '../../models/task'
 
-import PropTypes from 'prop-types';
+import { TaskListProps } from '../../models/ComponentProps';
 
-const TaskLoader = Loader(Task);
+const TaskList: React.FC<TaskListProps> = ({tasks, toggleDone, toggleImportant, deleteTask}) => {
+    if(!tasks.length)
+    {
+        return <p>дел нет</p>
+    }
 
-function TaskList (props) {
-    const {tasks, onToggleDone, onDeleteTask, onToggleImportant} = props;
-
-    const todos = tasks.map((task) => {
+    const todos = tasks.map((task: ITask) => {
         const {id, isDone, isImportant, ...itemProps} = task;
 
         return <ThemeContext.Consumer>{ value =>
             <div key={id} className={`${value} ${cn('task', {'important': isImportant}, {'done': isDone})}`}>
-                <TaskLoader
+                <Task
                     {...itemProps}
-                     
+                        
                     isDone={isDone}
                     isImportant={isImportant}
                     
-                    handleToogleDone = {() => onToggleDone(id)}
-                    handleDeleteTask = {() => onDeleteTask(id)}
-                    handleToggleImportant = {() => onToggleImportant(id)}
+                    toggleDone = {() => toggleDone(id)}
+                    deleteTask = {() => deleteTask(id)}
+                    toggleImportant = {() => toggleImportant(id)}
                 />
             </div>
             }
-        </ThemeContext.Consumer>  
+        </ThemeContext.Consumer>
     });
     
     return (
@@ -41,12 +42,6 @@ function TaskList (props) {
             {todos}
         </div>
     )
-}
-
-TaskList.propTypes = {
-    id: PropTypes.number.isRequired,
-    isDone: PropTypes.bool.isRequired,
-    isImportant: PropTypes.bool.isRequired
 }
 
 export default TaskList

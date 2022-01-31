@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { FC, ChangeEvent } from 'react'
 
 import './SwitchTheme.css'
 
 import {THEME} from '../../consts/themes';
 
-function SwitchTheme (props) {
-    const {theme, onToggleTheme} = props;
+import { SwitchThemeProps } from '../../models/ComponentProps';
 
+const SwitchTheme: FC<SwitchThemeProps> = ({theme, toggleTheme}) => {
     return (
         <div>
             <input 
                 type="checkbox"
-                onChange={onToggleTheme}
+                onChange={(e) => toggleTheme(e)}
                 checked={theme === THEME.MOON}
             />
             

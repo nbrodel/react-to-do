@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../../components/Header/Header'
+import Navigation from '../../components/Navigation/Navigation'
 import './About.css'
 
 export default function About() {
     return (
     <div>
-        <Header />
+        <Navigation />
 
         <h1>About</h1>
         <div className='contact'>

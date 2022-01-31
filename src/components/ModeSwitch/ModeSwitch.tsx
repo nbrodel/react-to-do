@@ -4,13 +4,18 @@ import "./ModeSwitch.css"
 
 import {FILTER} from '../../consts/filters'
 
-function ModeSwitch (props) {
-    const {onChangeMode} = props;
+import { ModeSwitchProps } from '../../models/ComponentProps'
+
+const ModeSwitch: React.FC<ModeSwitchProps> = ({changeMode}) => {
 
     const filters = Object.values(FILTER).map((filter) => {
         const value = filter.toLowerCase();
         
-        return <button className={`mode-${value}`} key={filter} onClick={() => onChangeMode(filter)}>{filter}</button>
+        const onChangeMode = () => {
+            changeMode(filter)
+        }
+
+        return <button className={`mode-${value}`} key={filter} onClick={onChangeMode}>{filter}</button>
     })
 
     return (  
