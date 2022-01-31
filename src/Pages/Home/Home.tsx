@@ -45,7 +45,7 @@ const Home: FC<{}> = () => {
   const handleToggleImportant = (id: number) => { dispatch(toggleImportant(id)) }
 
   const handleChangeTask = (id: number, currentText: string) => {
-    const text = prompt('change current task', currentText)
+    const text = prompt('Change current task', currentText)
     if(isUnique(text)) dispatch(changeTask({id, text}))
     alert('This task already exists');
   }
